@@ -67,17 +67,11 @@
         <!-- Section 1: Hero Design from Image -->
         <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-8">
             <div class="relative z-10 max-w-4xl mx-auto space-y-6">
-                <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white animate-fade-in delay-1">
-                    Website Kenangan
-                </h1>
-                <h2 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent italic animate-fade-in delay-2">
-                    Untuk Kamu dan Dia.
-                </h2>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed animate-fade-in delay-3">
-                    Tempat menyimpan cerita, foto, dan lagu favorit kalian berdua. Semua momen spesial tersimpan di sini.
-                </p>
+                <h1 id="typewriter-h1" class="text-5xl md:text-7xl font-black tracking-tight text-white min-h-[1.2em]"></h1>
+                <h2 id="typewriter-h2" class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent italic min-h-[1.2em]"></h2>
+                <p id="typewriter-p" class="text-gray-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed min-h-[3em]"></p>
                 
-                <div class="pt-8 animate-fade-in delay-4">
+                <div id="typewriter-btn" class="pt-8 opacity-0">
                     <button class="px-10 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-full font-bold shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:shadow-[0_0_30px_rgba(236,72,153,0.8)] transition-all hover:scale-105 active:scale-95">
                         Lihat Cerita Kita
                     </button>
@@ -179,6 +173,33 @@
             }, 16);
         }
 
+        // Typewriter Logic
+        function typeWriter(text, elementId, speed, callback) {
+            let i = 0;
+            const element = document.getElementById(elementId);
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
+        function startAllTyping() {
+            typeWriter("Website Kenangan", "typewriter-h1", 100, () => {
+                typeWriter("Untuk Kamu dan Dia.", "typewriter-h2", 80, () => {
+                    typeWriter("Tempat menyimpan cerita, foto, dan lagu favorit kalian berdua. Semua momen spesial tersimpan di sini.", "typewriter-p", 40, () => {
+                        document.getElementById('typewriter-btn').style.opacity = '1';
+                        document.getElementById('typewriter-btn').style.transition = 'opacity 1s ease-in';
+                    });
+                });
+            });
+        }
+
         // Countdown Logic
         const overlay = document.getElementById('countdown-overlay');
         const countText = document.getElementById('countdown-text');
@@ -207,6 +228,7 @@
                 setTimeout(() => {
                     overlay.style.display = 'none';
                     document.body.classList.add('start-animations');
+                    startAllTyping(); // Start typing here!
                 }, 1000);
             }
         }, 1000);
