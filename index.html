@@ -41,7 +41,7 @@
         <!-- Countdown Overlay -->
         <div id="countdown-overlay" class="fixed inset-0 z-[100] bg-[#fff5f7] flex items-center justify-center transition-opacity duration-1000">
             <div id="countdown-text" class="text-8xl md:text-9xl font-black text-pink-500 animate-bounce">
-                3
+                5
             </div>
         </div>
 
@@ -149,7 +149,7 @@
         // Countdown Logic
         const overlay = document.getElementById('countdown-overlay');
         const countText = document.getElementById('countdown-text');
-        let count = 3;
+        let count = 5;
 
         // Start falling hearts
         const fallingInterval = setInterval(() => createFallingHeart(overlay), 200);
