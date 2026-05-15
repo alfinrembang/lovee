@@ -38,6 +38,13 @@
 </head>
 <body class="selection:bg-pink-200 selection:text-pink-900">
     <div class="relative min-h-screen bg-[#fff5f7] overflow-hidden">
+        <!-- Countdown Overlay -->
+        <div id="countdown-overlay" class="fixed inset-0 z-[100] bg-[#fff5f7] flex items-center justify-center transition-opacity duration-1000">
+            <div id="countdown-text" class="text-8xl md:text-9xl font-black text-pink-500 animate-bounce">
+                3
+            </div>
+        </div>
+
         <!-- Floating Hearts Background -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden" id="hearts-bg">
             <!-- Hearts will be injected by JS -->
@@ -82,6 +89,26 @@
     </div>
 
     <script>
+        // Countdown Logic
+        const overlay = document.getElementById('countdown-overlay');
+        const countText = document.getElementById('countdown-text');
+        let count = 3;
+
+        const timer = setInterval(() => {
+            count--;
+            if (count > 0) {
+                countText.textContent = count;
+            } else if (count === 0) {
+                countText.textContent = "❤️";
+            } else {
+                clearInterval(timer);
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1000);
+            }
+        }, 1000);
+
         const heartsBg = document.getElementById('hearts-bg');
         for (let i = 0; i < 15; i++) {
             const heart = document.createElement('div');
