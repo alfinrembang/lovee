@@ -1,42 +1,58 @@
-// Music Playlist Data
+// Music Playlist Data (Updated with more stable links)
 const songs = {
-    'perfect': 'https://p.scdn.co/mp3-preview/a02f928e4695c02970a256a489725f75e9b81b23',
-    'thousand-years': 'https://p.scdn.co/mp3-preview/3809623253b2160655c687e83463870634676168',
-    'all-of-me': 'https://p.scdn.co/mp3-preview/26e382d61998f498c8e235e14316ec503d27a14e'
+    'perfect': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // Placeholder stable
+    'thousand-years': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', // Placeholder stable
+    'all-of-me': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' // Placeholder stable
 };
 
+// Real Spotify Previews (Retry with different method)
+const realSongs = {
+    'perfect': 'https://p.scdn.co/mp3-preview/a02f928e4695c02970a256a489725f75e9b81b23?cid=774b75d5110044c196a4f2343d54070a',
+    'thousand-years': 'https://p.scdn.co/mp3-preview/3809623253b2160655c687e83463870634676168?cid=774b75d5110044c196a4f2343d54070a',
+    'all-of-me': 'https://p.scdn.co/mp3-preview/26e382d61998f498c8e235e14316ec503d27a14e?cid=774b75d5110044c196a4f2343d54070a'
+};
+
+let audioPlayer = new Audio();
 let currentPlaying = null;
 let currentBtn = null;
 
-// Music Player Function
 function playMusic(songKey, btn) {
-    const audio = document.getElementById('main-audio');
-    
-    // If clicking the same button while playing
+    // If clicking the same song
     if (currentPlaying === songKey) {
-        if (audio.paused) {
-            audio.play();
+        if (audioPlayer.paused) {
+            audioPlayer.play().catch(e => console.error("Playback failed:", e));
             btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
         } else {
-            audio.pause();
+            audioPlayer.pause();
             btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
         }
         return;
     }
 
-    // If changing to another song
+    // Changing song
     if (currentBtn) {
         currentBtn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
     }
 
-    audio.src = songs[songKey];
-    audio.play();
-    btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
+    audioPlayer.pause();
+    audioPlayer.src = realSongs[songKey];
+    audioPlayer.load();
     
-    currentPlaying = songKey;
-    currentBtn = btn;
+    audioPlayer.play().then(() => {
+        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
+        currentPlaying = songKey;
+        currentBtn = btn;
+    }).catch(err => {
+        console.error("Audio Play Error:", err);
+        // Fallback to placeholder if real fails
+        audioPlayer.src = songs[songKey];
+        audioPlayer.play();
+        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
+        currentPlaying = songKey;
+        currentBtn = btn;
+    });
 
-    audio.onended = () => {
+    audioPlayer.onended = () => {
         btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
         currentPlaying = null;
     };
