@@ -1,3 +1,47 @@
+// Music Playlist Data
+const songs = {
+    'perfect': 'https://p.scdn.co/mp3-preview/a02f928e4695c02970a256a489725f75e9b81b23',
+    'thousand-years': 'https://p.scdn.co/mp3-preview/3809623253b2160655c687e83463870634676168',
+    'all-of-me': 'https://p.scdn.co/mp3-preview/26e382d61998f498c8e235e14316ec503d27a14e'
+};
+
+let currentPlaying = null;
+let currentBtn = null;
+
+// Music Player Function
+function playMusic(songKey, btn) {
+    const audio = document.getElementById('main-audio');
+    
+    // If clicking the same button while playing
+    if (currentPlaying === songKey) {
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
+        } else {
+            audio.pause();
+            btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
+        }
+        return;
+    }
+
+    // If changing to another song
+    if (currentBtn) {
+        currentBtn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
+    }
+
+    audio.src = songs[songKey];
+    audio.play();
+    btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
+    
+    currentPlaying = songKey;
+    currentBtn = btn;
+
+    audio.onended = () => {
+        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
+        currentPlaying = null;
+    };
+}
+
 // Particle Explosion Function
 function createExplosion(x, y) {
     for (let i = 0; i < 40; i++) {
@@ -94,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (overlay && countText) {
         let count = 5;
-        // Start falling hearts
         const fallingInterval = setInterval(() => createFallingHeart(overlay), 200);
 
         const timer = setInterval(() => {
@@ -108,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(timer);
                 clearInterval(fallingInterval);
                 
-                // Explode!
                 const rect = countText.getBoundingClientRect();
                 createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
                 
