@@ -53,8 +53,10 @@
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
                         Our Playlist
                     </div>
-                    <h2 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">Lagu Buat Arnil Cantik 🎶</h2>
-                    <p class="text-gray-400 max-w-md mx-auto font-medium">Maaf ya arnel kalo lagunya ga relate buat kamu, tapi ini aku pilih lagu nya yang cocok buat dirinya arnel. Sempurna ya karna arnel sempurna buat aku anjay ga selebay itu juga sih tapi ya emang kamu itu sempurna tau. Terus A thousand years kalo pas di play lagunya bisa nyambung atau cocok sama kenangan di website nya sih. Buat lagu yang terakhir ini karena aku sering lihat arnel play lagunya di instastory ig jadi ya aku pilih deh, semoga suka ya.</p>
+                    <h2 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent italic">Lagu Buat Arnil Cantik 🎶</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                        Maaf ya arnel kalo lagunya ga relate buat kamu, tapi ini aku pilih lagu nya yang cocok buat dirinya arnel. Sempurna ya karna arnel sempurna buat aku anjay ga selebay itu juga sih tapi ya emang kamu itu sempurna tau. Terus A thousand years kalo pas di play lagunya bisa nyambung atau cocok sama kenangan di website nya sih. Buat lagu yang terakhir ini karena aku sering lihat arnel play lagunya di instastory ig jadi ya aku pilih deh, semoga suka ya.
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -123,7 +125,7 @@
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-500 text-xs font-bold uppercase tracking-widest">
                         ❤️ Kenangan #1
                     </div>
-                    <h2 class="text-5xl md:text-7xl font-black text-white leading-tight">Pertama kali ketemu 💫</h2>
+                    <h2 class="text-5xl md:text-7xl font-black text-white leading-tight italic">Pertama kali ketemu 💫</h2>
                     <p class="text-gray-400 text-lg md:text-xl leading-relaxed">
                         Moment ketika mata kita pertama kali bertemu, dan dunia serasa berhenti. Sejak saat itu, aku tahu kamu adalah orangnya.
                     </p>
@@ -131,30 +133,47 @@
                         <div class="flex items-center gap-4 text-gray-300">
                             <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-xl">📅</div>
                             <div>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest leading-none mb-1">Tanggal</p>
+                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest leading-none mb-1 text-pink-500/50">Tanggal</p>
                                 <p class="font-bold text-base">14 Feb 2023</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 text-gray-300">
                             <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-xl">📍</div>
                             <div>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest leading-none mb-1">Lokasi</p>
+                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest leading-none mb-1 text-pink-500/50">Lokasi</p>
                                 <p class="font-bold text-base">Coffee Shop</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Right: Smaller Image + Text Below -->
-                <div class="flex flex-col items-center gap-6 group">
-                    <div class="relative w-full max-w-[320px]">
-                        <div class="absolute -inset-4 bg-pink-500/20 blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                        <div class="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl transition-all duration-700 group-hover:scale-[1.05] group-active:scale-95">
-                            <img src="assets/images/arnil.png" alt="Pertama Kali Ketemu" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out">
+                <!-- Right: Vertical Gallery of 3 Photos -->
+                <div class="flex flex-col items-center gap-10">
+                    <div class="flex flex-col gap-12 w-full max-w-[280px]">
+                        <!-- Photo 1 -->
+                        <div class="relative group">
+                            <div class="absolute -inset-4 bg-pink-500/20 blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                            <div class="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl transition-all duration-700 hover:scale-[1.05] active:scale-95">
+                                <img src="assets/images/arnil.png" alt="Arnil 1" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out">
+                            </div>
+                        </div>
+                        <!-- Photo 2 -->
+                        <div class="relative group">
+                            <div class="absolute -inset-4 bg-purple-500/20 blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                            <div class="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl transition-all duration-700 hover:scale-[1.05] active:scale-95">
+                                <img src="assets/images/arnil2.png" alt="Arnil 2" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out">
+                            </div>
+                        </div>
+                        <!-- Photo 3 -->
+                        <div class="relative group">
+                            <div class="absolute -inset-4 bg-rose-500/20 blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                            <div class="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl transition-all duration-700 hover:scale-[1.05] active:scale-95">
+                                <img src="assets/images/arnil3.png" alt="Arnil 3" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out">
+                            </div>
                         </div>
                     </div>
-                    <!-- New Text Position -->
-                    <div class="text-center animate-pulse group-hover:animate-none transition-all">
-                        <p class="text-pink-400/60 font-black text-sm md:text-base tracking-widest uppercase italic group-hover:text-pink-400">
+                    <!-- Instruction Text -->
+                    <div class="text-center animate-pulse">
+                        <p class="text-pink-400/60 font-black text-sm md:text-base tracking-widest uppercase italic">
                             ✨ Coba tekan fotonya
                         </p>
                     </div>
