@@ -1,15 +1,9 @@
-// Music Playlist Data (Updated with more stable links)
+// Music Playlist Data (Pointing to your local files)
+// Masukkan file lagu Anda ke folder assets/music/ dengan nama yang sesuai di bawah ini
 const songs = {
-    'perfect': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // Placeholder stable
-    'thousand-years': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', // Placeholder stable
-    'all-of-me': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' // Placeholder stable
-};
-
-// Real Spotify Previews (Retry with different method)
-const realSongs = {
-    'perfect': 'https://p.scdn.co/mp3-preview/a02f928e4695c02970a256a489725f75e9b81b23?cid=774b75d5110044c196a4f2343d54070a',
-    'thousand-years': 'https://p.scdn.co/mp3-preview/3809623253b2160655c687e83463870634676168?cid=774b75d5110044c196a4f2343d54070a',
-    'all-of-me': 'https://p.scdn.co/mp3-preview/26e382d61998f498c8e235e14316ec503d27a14e?cid=774b75d5110044c196a4f2343d54070a'
+    'perfect': 'assets/music/perfect.mp3',
+    'thousand-years': 'assets/music/thousand-years.mp3',
+    'all-of-me': 'assets/music/all-of-me.mp3'
 };
 
 let audioPlayer = new Audio();
@@ -20,7 +14,10 @@ function playMusic(songKey, btn) {
     // If clicking the same song
     if (currentPlaying === songKey) {
         if (audioPlayer.paused) {
-            audioPlayer.play().catch(e => console.error("Playback failed:", e));
+            audioPlayer.play().catch(e => {
+                alert("File lagu tidak ditemukan! Pastikan Anda sudah menaruh file '" + songs[songKey] + "' di folder project.");
+                console.error("Playback failed:", e);
+            });
             btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
         } else {
             audioPlayer.pause();
@@ -35,7 +32,7 @@ function playMusic(songKey, btn) {
     }
 
     audioPlayer.pause();
-    audioPlayer.src = realSongs[songKey];
+    audioPlayer.src = songs[songKey];
     audioPlayer.load();
     
     audioPlayer.play().then(() => {
@@ -43,13 +40,8 @@ function playMusic(songKey, btn) {
         currentPlaying = songKey;
         currentBtn = btn;
     }).catch(err => {
+        alert("File lagu '" + songs[songKey] + "' belum ada atau tidak terbaca. Harap masukkan file MP3 ke folder tersebut.");
         console.error("Audio Play Error:", err);
-        // Fallback to placeholder if real fails
-        audioPlayer.src = songs[songKey];
-        audioPlayer.play();
-        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
-        currentPlaying = songKey;
-        currentBtn = btn;
     });
 
     audioPlayer.onended = () => {
