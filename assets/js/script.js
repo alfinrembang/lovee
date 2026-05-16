@@ -1,7 +1,7 @@
 // Music Playlist Data (Pointing to your local files)
 // Masukkan file lagu Anda ke folder assets/music/ dengan nama yang sesuai di bawah ini
 const songs = {
-    'perfect': 'assets/music/perfect.mp3',
+    'sempurna': 'assets/music/sempurna.mp3',
     'thousand-years': 'assets/music/thousand-years.mp3',
     'all-of-me': 'assets/music/all-of-me.mp3'
 };
