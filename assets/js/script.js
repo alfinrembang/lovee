@@ -3,7 +3,7 @@
 const songs = {
     'sempurna': 'assets/music/sempurna.mp3',
     'thousand-years': 'assets/music/thousand-years.mp3',
-    'all-of-me': 'assets/music/all-of-me.mp3'
+    'terpukau': 'assets/music/terpukau.mp3'
 };
 
 let audioPlayer = new Audio();
