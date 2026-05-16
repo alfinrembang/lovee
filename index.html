@@ -4,53 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lovee - Spread the Love</title>
+    <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-            50% { transform: translateY(-20px) rotate(10deg); opacity: 1; }
-            100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.1); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
-        }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
-        .animate-gradient { animation: gradient 3s ease infinite; }
-        
-        /* Only animate when parent has start-animations class */
-        .start-animations .animate-fade-in { 
-            animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-        }
-        
-        .animate-fade-in { opacity: 0; }
-        .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.6s; }
-        .delay-3 { animation-delay: 1s; }
-        .delay-4 { animation-delay: 1.4s; }
-    </style>
 </head>
 <body class="selection:bg-pink-200 selection:text-pink-900 bg-[#0f0510] text-white">
     <div class="relative overflow-x-hidden font-sans">
@@ -64,7 +25,7 @@
         <!-- Stars Background Effect -->
         <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
 
-        <!-- Section 1: Hero Design from Image -->
+        <!-- Section 1: Hero -->
         <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-8">
             <div class="relative z-10 max-w-4xl mx-auto space-y-6">
                 <h1 id="typewriter-h1" class="text-5xl md:text-7xl font-black tracking-tight text-white min-h-[1.2em]"></h1>
@@ -87,7 +48,6 @@
         <!-- Section 2: Beating Heart & Secret Message -->
         <section class="relative min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-[#0f0510] to-[#1a0820]">
             <div class="flex flex-col items-center justify-center gap-16">
-                <!-- Main Enlarged Beating Heart -->
                 <div class="animate-heartbeat relative">
                     <div class="absolute inset-0 bg-pink-500 blur-[80px] opacity-20"></div>
                     <svg class="w-56 h-56 md:w-72 md:h-72 text-pink-500 drop-shadow-[0_0_30px_rgba(236,72,153,0.5)] relative" fill="currentColor" viewBox="0 0 24 24">
@@ -98,7 +58,6 @@
                 <div class="flex flex-col items-center gap-6">
                     <a href="secret.html" class="group relative flex items-center justify-center w-24 h-24 bg-gradient-to-br from-pink-500 to-rose-600 rounded-3xl shadow-2xl shadow-pink-500/40 hover:shadow-pink-500/60 hover:scale-105 transition-all duration-500 active:scale-95">
                         <div class="absolute inset-0 bg-pink-400 blur-xl opacity-0 group-hover:opacity-40 transition-opacity"></div>
-                        <!-- Envelope Icon -->
                         <svg class="w-12 h-12 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                         </svg>
@@ -114,140 +73,7 @@
         </footer>
     </div>
 
-
-    <script>
-        // Particle Explosion Function
-        function createExplosion(x, y) {
-            for (let i = 0; i < 40; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'fixed z-[101] pointer-events-none text-2xl';
-                particle.textContent = '❤️';
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = Math.random() * 15 + 5;
-                const vx = Math.cos(angle) * velocity;
-                const vy = Math.sin(angle) * velocity;
-                
-                document.body.appendChild(particle);
-                
-                let opacity = 1;
-                let posX = x;
-                let posY = y;
-                
-                const anim = setInterval(() => {
-                    posX += vx;
-                    posY += vy;
-                    opacity -= 0.02;
-                    particle.style.transform = `translate(${posX - x}px, ${posY - y}px) scale(${opacity})`;
-                    particle.style.opacity = opacity;
-                    
-                    if (opacity <= 0) {
-                        clearInterval(anim);
-                        particle.remove();
-                    }
-                }, 16);
-            }
-        }
-
-        // Falling Hearts for Overlay
-        function createFallingHeart(container) {
-            const heart = document.createElement('div');
-            heart.className = 'absolute text-pink-300 pointer-events-none animate-float opacity-50';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.top = '-50px';
-            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-            heart.textContent = '❤️';
-            container.appendChild(heart);
-
-            let top = -50;
-            const speed = Math.random() * 2 + 1;
-            const fall = setInterval(() => {
-                top += speed;
-                heart.style.top = top + 'px';
-                if (top > window.innerHeight) {
-                    clearInterval(fall);
-                    heart.remove();
-                }
-            }, 16);
-        }
-
-        // Typewriter Logic
-        function typeWriter(text, elementId, speed, callback) {
-            let i = 0;
-            const element = document.getElementById(elementId);
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else if (callback) {
-                    callback();
-                }
-            }
-            type();
-        }
-
-        function startAllTyping() {
-            typeWriter("Website Kenangan", "typewriter-h1", 100, () => {
-                typeWriter("Untuk Kamu dan Dia.", "typewriter-h2", 80, () => {
-                    typeWriter("Tempat menyimpan cerita, foto, dan lagu favorit kalian berdua. Semua momen spesial tersimpan di sini.", "typewriter-p", 40, () => {
-                        document.getElementById('typewriter-btn').style.opacity = '1';
-                        document.getElementById('typewriter-btn').style.transition = 'opacity 1s ease-in';
-                    });
-                });
-            });
-        }
-
-        // Countdown Logic
-        const overlay = document.getElementById('countdown-overlay');
-        const countText = document.getElementById('countdown-text');
-        let count = 5;
-
-        // Start falling hearts
-        const fallingInterval = setInterval(() => createFallingHeart(overlay), 200);
-
-        const timer = setInterval(() => {
-            count--;
-            if (count > 0) {
-                countText.textContent = count;
-            } else if (count === 0) {
-                countText.textContent = "❤️";
-                countText.classList.add('scale-[3]', 'transition-transform', 'duration-500');
-            } else {
-                clearInterval(timer);
-                clearInterval(fallingInterval);
-                
-                // Explode!
-                const rect = countText.getBoundingClientRect();
-                createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
-                
-                countText.style.display = 'none';
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    document.body.classList.add('start-animations');
-                    startAllTyping(); // Start typing here!
-                }, 1000);
-            }
-        }, 1000);
-
-        // Stars Effect
-        const starsBg = document.getElementById('stars-bg');
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            const isTwinkle = Math.random() > 0.7;
-            star.className = `absolute bg-white rounded-full ${isTwinkle ? 'animate-twinkle' : ''}`;
-            const size = Math.random() * 2.5;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.opacity = Math.random() * 0.7 + 0.3; // Minimum 0.3 brightness
-            star.style.animationDelay = Math.random() * 5 + 's';
-            starsBg.appendChild(star);
-        }
-    </script>
+    <!-- Main Logic -->
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
