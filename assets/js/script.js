@@ -52,11 +52,10 @@ function playMusic(songKey, btn) {
 
 // Particle Explosion Function
 function createExplosion(x, y) {
-    const particles = ['💙', '✨', '⭐', '💙', '✨'];
     for (let i = 0; i < 40; i++) {
         const particle = document.createElement('div');
         particle.className = 'fixed z-[101] pointer-events-none text-2xl';
-        particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+        particle.textContent = '❤️';
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
         
@@ -89,15 +88,11 @@ function createExplosion(x, y) {
 // Falling Hearts for Overlay
 function createFallingHeart(container) {
     const heart = document.createElement('div');
-    heart.className = 'absolute text-sky-300 pointer-events-none animate-float opacity-60';
+    heart.className = 'absolute text-pink-300 pointer-events-none animate-float opacity-50';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.top = '-50px';
     heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-    
-    // Galaxy themed items
-    const elements = ['💙', '💙', '✨', '⭐', '💙'];
-    heart.textContent = elements[Math.floor(Math.random() * elements.length)];
-    
+    heart.textContent = '❤️';
     container.appendChild(heart);
 
     let top = -50;
