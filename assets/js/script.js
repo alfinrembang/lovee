@@ -52,10 +52,11 @@ function playMusic(songKey, btn) {
 
 // Particle Explosion Function
 function createExplosion(x, y) {
+    const particles = ['💙', '✨', '⭐', '💙', '✨'];
     for (let i = 0; i < 40; i++) {
         const particle = document.createElement('div');
         particle.className = 'fixed z-[101] pointer-events-none text-2xl';
-        particle.textContent = '❤️';
+        particle.textContent = particles[Math.floor(Math.random() * particles.length)];
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
         
@@ -88,11 +89,15 @@ function createExplosion(x, y) {
 // Falling Hearts for Overlay
 function createFallingHeart(container) {
     const heart = document.createElement('div');
-    heart.className = 'absolute text-pink-300 pointer-events-none animate-float opacity-50';
+    heart.className = 'absolute text-sky-300 pointer-events-none animate-float opacity-60';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.top = '-50px';
     heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-    heart.textContent = '❤️';
+    
+    // Galaxy themed items
+    const elements = ['💙', '💙', '✨', '⭐', '💙'];
+    heart.textContent = elements[Math.floor(Math.random() * elements.length)];
+    
     container.appendChild(heart);
 
     let top = -50;
@@ -175,17 +180,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Stars Effect
     if (starsBg) {
-        for (let i = 0; i < 200; i++) {
+        starsBg.innerHTML = '';
+        for (let i = 0; i < 250; i++) {
             const star = document.createElement('div');
-            const isTwinkle = Math.random() > 0.7;
-            star.className = `absolute bg-white rounded-full ${isTwinkle ? 'animate-twinkle' : ''}`;
-            const size = Math.random() * 2.5;
+            const isTwinkle = Math.random() > 0.6;
+            
+            // Random color: mostly pure white, some soft cyan-blue stars
+            const colorRand = Math.random();
+            let color = '#ffffff';
+            let shadowColor = 'rgba(255, 255, 255, 0.5)';
+            if (colorRand > 0.85) {
+                color = '#bae6fd'; // sky-200
+                shadowColor = 'rgba(56, 189, 248, 0.8)'; // sky-400
+            } else if (colorRand > 0.7) {
+                color = '#a5f3fc'; // cyan-200
+                shadowColor = 'rgba(34, 211, 238, 0.8)'; // cyan-400
+            }
+            
+            star.className = `absolute rounded-full ${isTwinkle ? 'animate-twinkle' : ''}`;
+            const size = Math.random() * 3.2 + 0.8;
+            star.style.backgroundColor = color;
             star.style.width = size + 'px';
             star.style.height = size + 'px';
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
-            star.style.opacity = Math.random() * 0.7 + 0.3;
+            star.style.opacity = Math.random() * 0.8 + 0.2;
             star.style.animationDelay = Math.random() * 5 + 's';
+            star.style.boxShadow = `0 0 ${size * 1.5}px ${shadowColor}`;
             starsBg.appendChild(star);
         }
     }
