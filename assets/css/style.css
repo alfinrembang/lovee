@@ -89,6 +89,8 @@ body { font-family: 'Inter', sans-serif; }
     transition: all 0.5s ease-in-out;
 }
 
+.group:hover .glow-frame,
+.group:active .glow-frame,
 .glow-frame:hover {
     border-color: rgba(236, 72, 153, 1);
     box-shadow: 0 0 35px rgba(236, 72, 153, 1),

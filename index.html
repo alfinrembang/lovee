@@ -180,13 +180,15 @@
                 <!-- Left: Swinging Image -->
                 <div class="flex flex-col items-center gap-6 group order-2 md:order-1">
                     <div class="relative w-full max-w-[320px] animate-swing">
-                        <div class="absolute -inset-4 bg-purple-500/20 blur-3xl rounded-[2.5rem] opacity-40"></div>
+                        <div class="absolute -inset-4 bg-purple-500/20 blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                         <div class="relative rounded-[2.5rem] overflow-hidden glow-frame shadow-2xl transition-all duration-700 hover:scale-105 active:scale-95">
                             <img src="assets/images/arnil.png" alt="Arnil" class="w-full h-auto transition-all duration-1000">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                                <p class="text-white font-black text-xl italic uppercase">Beautiful Arnil</p>
-                            </div>
                         </div>
+                    </div>
+                    <div class="text-center animate-pulse group-hover:animate-none transition-all">
+                        <p class="text-purple-400/60 font-black text-sm md:text-base tracking-widest uppercase italic group-hover:text-purple-400">
+                            ✨ Beautiful Arnil
+                        </p>
                     </div>
                 </div>
                 <!-- Right: Text Content -->
