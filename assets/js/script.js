@@ -2,7 +2,7 @@
 // Masukkan file lagu Anda ke folder assets/music/ dengan nama yang sesuai di bawah ini
 const songs = {
     'sempurna': 'assets/music/sempurna.mp3',
-    'thousand-years': 'assets/music/thousand-years.mp3',
+    'somebodys-pleasure': 'assets/music/somebodys-pleasure.mp3',
     'terpukau': 'assets/music/terpukau.mp3'
 };
 
