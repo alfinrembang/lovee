@@ -107,3 +107,15 @@ body { font-family: 'Inter', sans-serif; }
                 0 0 20px rgba(168, 85, 247, 0.8),
                 inset 0 0 20px rgba(236, 72, 153, 0.5);
 }
+
+/* Glowing Flow Dash Connector Animation */
+@keyframes flowDash {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+.animate-flow-dash {
+    stroke-dasharray: 6 4;
+    animation: flowDash 1.5s linear infinite;
+}
