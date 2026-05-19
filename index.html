@@ -27,7 +27,7 @@
         <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
 
         <!-- Section 1: Hero -->
-        <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-8">
+        <section id="hero-section" class="relative min-h-screen flex flex-col items-center justify-center text-center px-8">
             <div class="relative z-10 max-w-4xl mx-auto space-y-6">
                 <h1 id="typewriter-h1" class="text-5xl md:text-7xl font-black tracking-tight text-white min-h-[1.2em]"></h1>
                 <h2 id="typewriter-h2" class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent italic min-h-[1.2em]"></h2>
@@ -47,7 +47,7 @@
         </section>
 
         <!-- Section 2: Music Playlist -->
-        <section id="music-section" class="perf-section pause-when-offscreen relative min-h-screen py-24 flex flex-col items-center justify-center bg-gradient-to-b from-[#020617] to-[#0b1329]">
+        <section id="music-section" class="lazy-section relative min-h-screen py-24 flex flex-col items-center justify-center bg-gradient-to-b from-[#020617] to-[#0b1329]">
             <div class="relative z-10 w-full max-w-6xl px-8 text-center space-y-16">
                 <div class="space-y-4 animate-fade-in">
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-500 text-xs font-bold tracking-widest uppercase mb-4">
@@ -130,7 +130,7 @@
         </section>
 
         <!-- Section 3: Memory #1 -->
-        <section id="memory-section" class="perf-section pause-when-offscreen relative min-h-screen py-24 flex items-center justify-center bg-gradient-to-b from-[#0b1329] to-[#0f172a] px-8">
+        <section id="memory-section" class="lazy-section relative min-h-screen py-24 flex items-center justify-center bg-gradient-to-b from-[#0b1329] to-[#0f172a] px-8">
             <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 items-center text-center md:text-left">
                 <!-- Left: Text Content -->
                 <div class="space-y-8 animate-fade-in">
@@ -163,7 +163,7 @@
                     <div class="relative w-full max-w-[320px]">
                         <div class="absolute -inset-4 bg-pink-500/20 blur-xl md:blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                         <div class="relative rounded-[2.5rem] overflow-hidden glow-frame shadow-2xl transition-all duration-700 hover:scale-[1.05] active:scale-95">
-                            <img src="assets/images/arnil1.png" alt="Arnil 1" width="320" height="400" loading="lazy" decoding="async" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out">
+                            <img data-src="assets/images/arnil1.png" alt="Arnil 1" width="320" height="400" decoding="async" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out">
                         </div>
                     </div>
                     <div class="text-center animate-pulse group-hover:animate-none transition-all">
@@ -176,14 +176,14 @@
         </section>
 
         <!-- Section 3.5: Memory #2 (Swinging Effect) -->
-        <section id="memory-section-2" class="perf-section pause-when-offscreen relative min-h-screen py-24 flex items-center justify-center bg-gradient-to-b from-[#0f172a] to-[#0b1329] px-8">
+        <section id="memory-section-2" class="lazy-section relative min-h-screen py-24 flex items-center justify-center bg-gradient-to-b from-[#0f172a] to-[#0b1329] px-8">
             <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-16 items-center text-center md:text-left">
                 <!-- Left: Swinging Image -->
                 <div class="flex flex-col items-center gap-6 group order-2 md:order-1">
                     <div class="relative w-full max-w-[320px] animate-swing">
                         <div class="absolute -inset-4 bg-purple-500/20 blur-xl md:blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                         <div class="relative rounded-[2.5rem] overflow-hidden glow-frame shadow-2xl transition-all duration-700 hover:scale-105 active:scale-95">
-                            <img src="assets/images/arnil.png" alt="Arnil" width="320" height="400" loading="lazy" decoding="async" class="w-full h-auto transition-all duration-1000">
+                            <img data-src="assets/images/arnil.png" alt="Arnil" width="320" height="400" decoding="async" class="w-full h-auto transition-all duration-1000">
                         </div>
                     </div>
                     <div class="text-center animate-pulse group-hover:animate-none transition-all">
@@ -222,7 +222,7 @@
         </section>
 
         <!-- Section 3.6: Memory #3 -->
-        <section id="memory-section-3" class="perf-section pause-when-offscreen relative min-h-screen py-24 flex items-center justify-center bg-gradient-to-b from-[#0b1329] to-[#050b18] px-8">
+        <section id="memory-section-3" class="lazy-section relative min-h-screen py-24 flex items-center justify-center bg-gradient-to-b from-[#0b1329] to-[#050b18] px-8">
             <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 items-center text-center md:text-left">
                 <!-- Left: Text Content -->
                 <div class="space-y-8 animate-fade-in">
@@ -255,7 +255,7 @@
                     <div class="relative w-full max-w-[320px]">
                         <div class="absolute -inset-4 bg-pink-500/20 blur-xl md:blur-3xl rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                         <div class="relative rounded-[2.5rem] overflow-hidden glow-frame shadow-2xl transition-all duration-700 hover:scale-[1.05] active:scale-95">
-                            <img src="assets/images/arnil2.png" alt="Arnil 2" width="320" height="400" loading="lazy" decoding="async" class="w-full h-auto transition-all duration-1000 ease-in-out">
+                            <img data-src="assets/images/arnil2.png" alt="Arnil 2" width="320" height="400" decoding="async" class="w-full h-auto transition-all duration-1000 ease-in-out">
                         </div>
                     </div>
                     <div class="text-center animate-pulse group-hover:animate-none transition-all">
@@ -268,7 +268,7 @@
         </section>
 
         <!-- Section 4: Memory Message -->
-        <section id="memory-closing" class="perf-section pause-when-offscreen relative min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-[#050b18] via-[#0a050f] to-[#080612] px-6 py-24">
+        <section id="memory-closing" class="lazy-section relative min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-[#050b18] via-[#0a050f] to-[#080612] px-6 py-24">
             <div class="flex flex-col items-center justify-center gap-10 md:gap-12 w-full max-w-3xl mx-auto animate-fade-in">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight">
                     <span class="text-white">Setiap kenangan kita<br>tersimpan </span><span class="text-[#f0a6ca]">di sini,</span><br>
@@ -295,7 +295,7 @@
         </section>
 
         <!-- Section 5: Beating Heart & Secret Message -->
-        <section class="perf-section pause-when-offscreen relative min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-[#080612] to-[#020617] px-6 py-24">
+        <section class="lazy-section relative min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-[#080612] to-[#020617] px-6 py-24">
             <div class="flex flex-col items-center justify-center gap-16 animate-fade-in delay-1">
                 <div class="animate-heartbeat relative">
                     <div class="absolute inset-0 bg-pink-500 blur-[40px] md:blur-[80px] opacity-20"></div>

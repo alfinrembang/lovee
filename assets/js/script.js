@@ -134,16 +134,41 @@ function initStars(starsBg) {
     starsBg.appendChild(fragment);
 }
 
-function setupOffscreenAnimationPause() {
-    if (!('IntersectionObserver' in window)) return;
+function setupLazySections() {
+    const sections = document.querySelectorAll('.lazy-section');
+    if (!sections.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+        sections.forEach((section) => section.classList.add('section-active'));
+        return;
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            entry.target.classList.toggle('animations-paused', !entry.isIntersecting);
+            const section = entry.target;
+            if (entry.isIntersecting) {
+                section.classList.add('section-active');
+                section.classList.remove('animations-paused');
+                activateLazyImages(section);
+            } else {
+                section.classList.remove('section-active');
+                section.classList.add('animations-paused');
+            }
         });
-    }, { rootMargin: '80px 0px', threshold: 0.05 });
+    }, { rootMargin: '120px 0px 280px 0px', threshold: 0 });
 
-    document.querySelectorAll('.pause-when-offscreen').forEach((el) => observer.observe(el));
+    sections.forEach((section) => {
+        section.classList.add('animations-paused');
+        observer.observe(section);
+    });
+}
+
+function activateLazyImages(section) {
+    section.querySelectorAll('img[data-src]').forEach((img) => {
+        if (!img.dataset.src) return;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+    });
 }
 
 // Typewriter Logic
@@ -205,19 +230,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     overlay.style.display = 'none';
                     document.body.classList.add('start-animations');
                     startAllTyping();
+                    if (starsBg) {
+                        const runStars = () => initStars(starsBg);
+                        if ('requestIdleCallback' in window) {
+                            requestIdleCallback(runStars, { timeout: 1500 });
+                        } else {
+                            setTimeout(runStars, 50);
+                        }
+                    }
                 }, 1000);
             }
         }, 1000);
     }
 
-    if (starsBg) {
-        const runStars = () => initStars(starsBg);
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(runStars, { timeout: 1500 });
-        } else {
-            setTimeout(runStars, 50);
-        }
-    }
-
-    setupOffscreenAnimationPause();
+    setupLazySections();
 });

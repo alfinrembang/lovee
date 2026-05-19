@@ -14,10 +14,20 @@ body { font-family: 'Inter', sans-serif; }
     }
 }
 
-/* Skip rendering off-screen sections until scrolled near */
-.perf-section {
-    content-visibility: auto;
+/* Lazy sections: hidden from browser until user scrolls near (saves GPU/CPU) */
+.lazy-section {
     contain-intrinsic-size: auto 100vh;
+}
+
+.lazy-section:not(.section-active) {
+    content-visibility: hidden;
+    contain: strict;
+    pointer-events: none;
+}
+
+.lazy-section.section-active {
+    content-visibility: visible;
+    contain: layout style paint;
 }
 
 /* Pause infinite animations when section is off-screen */
