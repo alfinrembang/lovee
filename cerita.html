@@ -40,7 +40,7 @@
         }
 
         /* Spinning 3D Orbit Ring */
-        .ring {
+        .orbit-ring {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -51,11 +51,11 @@
         /* Individual orbiting items */
         .orbit-item {
             position: absolute;
-            width: 90px;
-            height: 125px;
+            width: 105px;
+            height: 145px;
             transform-style: preserve-3d;
-            left: calc(50% - 45px);
-            top: calc(50% - 62.5px);
+            left: calc(50% - 52.5px);
+            top: calc(50% - 72.5px);
         }
 
         /* Counter-rotation for billboarding */
@@ -66,28 +66,28 @@
             animation: spinChild 28s linear infinite;
         }
 
-        /* 3D Orbit Positions (Radius is 260px on desktop, 150px on mobile) */
+        /* 3D Orbit Positions (Radius is 290px on desktop, 165px on mobile) */
         @media (min-width: 768px) {
-            .item-1 { transform: rotateY(0deg) translateZ(260px); }
-            .item-2 { transform: rotateY(60deg) translateZ(260px); }
-            .item-3 { transform: rotateY(120deg) translateZ(260px); }
-            .item-4 { transform: rotateY(180deg) translateZ(260px); }
-            .item-5 { transform: rotateY(240deg) translateZ(260px); }
-            .item-6 { transform: rotateY(300deg) translateZ(260px); }
+            .item-1 { transform: rotateY(0deg) translateZ(290px); }
+            .item-2 { transform: rotateY(60deg) translateZ(290px); }
+            .item-3 { transform: rotateY(120deg) translateZ(290px); }
+            .item-4 { transform: rotateY(180deg) translateZ(290px); }
+            .item-5 { transform: rotateY(240deg) translateZ(290px); }
+            .item-6 { transform: rotateY(300deg) translateZ(290px); }
         }
         @media (max-width: 767px) {
             .orbit-item {
-                width: 70px;
-                height: 98px;
-                left: calc(50% - 35px);
-                top: calc(50% - 49px);
+                width: 82px;
+                height: 115px;
+                left: calc(50% - 41px);
+                top: calc(50% - 57.5px);
             }
-            .item-1 { transform: rotateY(0deg) translateZ(145px); }
-            .item-2 { transform: rotateY(60deg) translateZ(145px); }
-            .item-3 { transform: rotateY(120deg) translateZ(145px); }
-            .item-4 { transform: rotateY(180deg) translateZ(145px); }
-            .item-5 { transform: rotateY(240deg) translateZ(145px); }
-            .item-6 { transform: rotateY(300deg) translateZ(145px); }
+            .item-1 { transform: rotateY(0deg) translateZ(165px); }
+            .item-2 { transform: rotateY(60deg) translateZ(165px); }
+            .item-3 { transform: rotateY(120deg) translateZ(165px); }
+            .item-4 { transform: rotateY(180deg) translateZ(165px); }
+            .item-5 { transform: rotateY(240deg) translateZ(165px); }
+            .item-6 { transform: rotateY(300deg) translateZ(165px); }
         }
 
         @keyframes spinParent {
@@ -176,7 +176,7 @@
             </div>
 
             <!-- Tilted 3D Orbiting Ring -->
-            <div class="ring">
+            <div class="orbit-ring">
                 
                 <!-- Item 1: Polaroid photo of a couple/heart -->
                 <div class="orbit-item item-1">
