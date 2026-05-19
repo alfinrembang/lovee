@@ -155,12 +155,50 @@
             0%, 100% { transform: scale(1) translateZ(10px); filter: drop-shadow(0 15px 35px rgba(244,63,94,0.45)); }
             50% { transform: scale(1.1) translateZ(35px); filter: drop-shadow(0 25px 55px rgba(244,63,94,0.7)); }
         }
+
+        /* Premium Shooting Star Effect */
+        .shooting-star {
+            position: absolute;
+            top: -120px;
+            right: 15%;
+            width: 2.5px;
+            height: 120px;
+            background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(165, 243, 252, 0.9);
+            transform: rotate(-45deg);
+            transform-origin: bottom center;
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+            animation: shoot 7s ease-in-out infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translate(0, 0) rotate(-45deg);
+                opacity: 0;
+            }
+            1% {
+                opacity: 1;
+            }
+            12% {
+                transform: translate(-125vw, 125vh) rotate(-45deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-125vw, 125vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="select-none overflow-hidden bg-[#020617]">
     
     <!-- Stars Background Effect -->
     <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
+    
+    <!-- Shooting Star Effect -->
+    <div class="shooting-star"></div>
     
     <!-- Navigation Back Link -->
     <div class="absolute top-8 left-8 z-30">
