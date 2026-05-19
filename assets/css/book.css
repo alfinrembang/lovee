@@ -366,26 +366,152 @@
     background: #2d1f3d;
 }
 
-@media (max-width: 520px) {
-    .book-spread {
-        min-height: min(75vh, 480px);
+/* Mobile: buku lebar penuh, halaman ditumpuk (tidak sempit) */
+@media (max-width: 767px) {
+    .book-scene {
+        justify-content: flex-start;
+        padding: 3.75rem 0 6.5rem;
+        min-height: 100dvh;
     }
 
-    .book-spine {
-        width: 20px;
+    .book-back {
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
     }
 
-    .spine-ring {
+    .book-title-top {
+        margin-bottom: 0.75rem;
+        font-size: 0.65rem;
+        padding: 0 1rem;
+    }
+
+    .book-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 0.65rem;
+        min-height: auto;
+    }
+
+    .book-stack {
+        right: 4px;
+        top: 12px;
+        bottom: 12px;
         width: 10px;
-        height: 10px;
-        border-width: 2px;
+    }
+
+    .book-spread {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(240px, 42dvh) auto minmax(260px, 1fr);
+        min-height: min(88dvh, 720px);
+        border-radius: 8px;
+    }
+
+    /* Spiral jadi garis horizontal di tengah */
+    .book-spine {
+        width: 100%;
+        height: 22px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0 1rem;
+        order: 2;
+        background: linear-gradient(180deg, #2a2a2a, #1f1f1f);
+    }
+
+    .book-page-left {
+        order: 1;
+        padding: 1rem 1.25rem 1.25rem;
+        min-height: 240px;
+    }
+
+    .book-page-right {
+        order: 3;
+        padding: 1.25rem 1.25rem 1.5rem;
+        min-height: 260px;
     }
 
     .book-page-left .love-lines {
-        font-size: 1.2rem;
+        font-size: 1.35rem;
+        left: 0.35rem;
+    }
+
+    .book-heart-frame {
+        width: min(72vw, 260px);
+        max-width: 280px;
+    }
+
+    .book-page-left.alt-photo-only .book-heart-frame {
+        width: min(78vw, 280px);
+    }
+
+    .book-sticker-label {
+        font-size: 1.25rem;
+        top: 0.85rem;
+        right: 0.85rem;
+    }
+
+    .book-sticker-hearts {
+        font-size: 1rem;
+    }
+
+    .book-letter {
+        padding: 1.15rem 1rem 1.25rem;
+        margin-top: 0.5rem;
+        min-height: 180px;
+    }
+
+    .book-letter p {
+        font-size: 0.9rem;
+        line-height: 1.65;
     }
 
     .book-mini-polaroids {
+        bottom: 1.25rem;
+        right: 0.85rem;
+    }
+
+    .book-mini-polaroids img {
+        width: 52px;
+        height: 64px;
+    }
+
+    .book-nav {
+        width: 100%;
+        padding: 0 0.65rem;
+        gap: 1.25rem;
+        margin-top: 1.25rem;
+    }
+
+    .book-nav-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+
+    .book-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .book-hint {
+        font-size: 0.7rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .book-page-left .love-lines {
         display: none;
+    }
+
+    .book-heart-frame {
+        width: min(80vw, 240px);
+    }
+
+    .book-letter p {
+        font-size: 0.85rem;
     }
 }
