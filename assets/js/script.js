@@ -85,28 +85,6 @@ function createExplosion(x, y) {
     }
 }
 
-// Falling Hearts for Overlay
-function createFallingHeart(container) {
-    const heart = document.createElement('div');
-    heart.className = 'absolute text-pink-300 pointer-events-none animate-float opacity-50';
-    heart.style.left = Math.random() * 100 + '%';
-    heart.style.top = '-50px';
-    heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-    heart.textContent = '❤️';
-    container.appendChild(heart);
-
-    let top = -50;
-    const speed = Math.random() * 2 + 1;
-    const fall = setInterval(() => {
-        top += speed;
-        heart.style.top = top + 'px';
-        if (top > window.innerHeight) {
-            clearInterval(fall);
-            heart.remove();
-        }
-    }, 16);
-}
-
 // Typewriter Logic
 function typeWriter(text, elementId, speed, callback) {
     let i = 0;
@@ -145,8 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const starsBg = document.getElementById('stars-bg');
 
     if (overlay && countText) {
-        let count = 5;
-        const fallingInterval = setInterval(() => createFallingHeart(overlay), 200);
+        let count = 3;
 
         const timer = setInterval(() => {
             count--;
@@ -157,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 countText.classList.add('scale-[3]', 'transition-transform', 'duration-500');
             } else {
                 clearInterval(timer);
-                clearInterval(fallingInterval);
                 
                 const rect = countText.getBoundingClientRect();
                 createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
