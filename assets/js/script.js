@@ -50,39 +50,100 @@ function playMusic(songKey, btn) {
     };
 }
 
-// Particle Explosion Function
+// Particle Explosion Function (single rAF loop — lighter on mobile)
 function createExplosion(x, y) {
-    for (let i = 0; i < 40; i++) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const particles = [];
+    for (let i = 0; i < 24; i++) {
         const particle = document.createElement('div');
         particle.className = 'fixed z-[101] pointer-events-none text-2xl';
         particle.textContent = '❤️';
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
-        
+        document.body.appendChild(particle);
+
         const angle = Math.random() * Math.PI * 2;
         const velocity = Math.random() * 15 + 5;
-        const vx = Math.cos(angle) * velocity;
-        const vy = Math.sin(angle) * velocity;
-        
-        document.body.appendChild(particle);
-        
-        let opacity = 1;
-        let posX = x;
-        let posY = y;
-        
-        const anim = setInterval(() => {
-            posX += vx;
-            posY += vy;
-            opacity -= 0.02;
-            particle.style.transform = `translate(${posX - x}px, ${posY - y}px) scale(${opacity})`;
-            particle.style.opacity = opacity;
-            
-            if (opacity <= 0) {
-                clearInterval(anim);
-                particle.remove();
-            }
-        }, 16);
+        particles.push({
+            el: particle,
+            originX: x,
+            originY: y,
+            posX: x,
+            posY: y,
+            vx: Math.cos(angle) * velocity,
+            vy: Math.sin(angle) * velocity,
+            opacity: 1
+        });
     }
+
+    const tick = () => {
+        let alive = false;
+        for (const p of particles) {
+            if (p.opacity <= 0) continue;
+            alive = true;
+            p.posX += p.vx;
+            p.posY += p.vy;
+            p.opacity -= 0.02;
+            p.el.style.transform = `translate(${p.posX - p.originX}px, ${p.posY - p.originY}px) scale(${p.opacity})`;
+            p.el.style.opacity = String(p.opacity);
+            if (p.opacity <= 0) p.el.remove();
+        }
+        if (alive) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+}
+
+function initStars(starsBg) {
+    if (!starsBg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const isMobile = window.innerWidth < 768;
+    const starCount = isMobile ? 70 : 100;
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        const isTwinkle = Math.random() > 0.6;
+        const colorRand = Math.random();
+        let color = '#ffffff';
+        let shadowColor = 'rgba(255, 255, 255, 0.5)';
+        if (colorRand > 0.85) {
+            color = '#bae6fd';
+            shadowColor = 'rgba(56, 189, 248, 0.8)';
+        } else if (colorRand > 0.7) {
+            color = '#a5f3fc';
+            shadowColor = 'rgba(34, 211, 238, 0.8)';
+        }
+
+        star.className = `absolute rounded-full star-dot${isTwinkle ? ' animate-twinkle' : ''}`;
+        const size = Math.random() * 3.2 + 0.8;
+        star.style.backgroundColor = color;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.opacity = String(Math.random() * 0.8 + 0.2);
+        star.style.animationDelay = Math.random() * 5 + 's';
+        if (!isMobile) {
+            star.style.boxShadow = `0 0 ${size * 1.5}px ${shadowColor}`;
+        }
+        fragment.appendChild(star);
+    }
+
+    starsBg.innerHTML = '';
+    starsBg.appendChild(fragment);
+}
+
+function setupOffscreenAnimationPause() {
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            entry.target.classList.toggle('animations-paused', !entry.isIntersecting);
+        });
+    }, { rootMargin: '80px 0px', threshold: 0.05 });
+
+    document.querySelectorAll('.pause-when-offscreen').forEach((el) => observer.observe(el));
 }
 
 // Typewriter Logic
@@ -149,36 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    // Stars Effect
     if (starsBg) {
-        starsBg.innerHTML = '';
-        for (let i = 0; i < 250; i++) {
-            const star = document.createElement('div');
-            const isTwinkle = Math.random() > 0.6;
-            
-            // Random color: mostly pure white, some soft cyan-blue stars
-            const colorRand = Math.random();
-            let color = '#ffffff';
-            let shadowColor = 'rgba(255, 255, 255, 0.5)';
-            if (colorRand > 0.85) {
-                color = '#bae6fd'; // sky-200
-                shadowColor = 'rgba(56, 189, 248, 0.8)'; // sky-400
-            } else if (colorRand > 0.7) {
-                color = '#a5f3fc'; // cyan-200
-                shadowColor = 'rgba(34, 211, 238, 0.8)'; // cyan-400
-            }
-            
-            star.className = `absolute rounded-full ${isTwinkle ? 'animate-twinkle' : ''}`;
-            const size = Math.random() * 3.2 + 0.8;
-            star.style.backgroundColor = color;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.opacity = Math.random() * 0.8 + 0.2;
-            star.style.animationDelay = Math.random() * 5 + 's';
-            star.style.boxShadow = `0 0 ${size * 1.5}px ${shadowColor}`;
-            starsBg.appendChild(star);
+        const runStars = () => initStars(starsBg);
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(runStars, { timeout: 1500 });
+        } else {
+            setTimeout(runStars, 50);
         }
     }
+
+    setupOffscreenAnimationPause();
 });

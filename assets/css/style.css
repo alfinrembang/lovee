@@ -1,6 +1,50 @@
 /* Main Styles & Animations */
 body { font-family: 'Inter', sans-serif; }
 
+/* Glass cards: blur on desktop only (lighter on mobile GPU) */
+.glass-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (min-width: 768px) {
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        -webkit-backdrop-filter: blur(24px);
+        backdrop-filter: blur(24px);
+    }
+}
+
+/* Skip rendering off-screen sections until scrolled near */
+.perf-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100vh;
+}
+
+/* Pause infinite animations when section is off-screen */
+.animations-paused .animate-heartbeat,
+.animations-paused .animate-swing,
+.animations-paused .animate-twinkle,
+.animations-paused .glow-frame,
+.animations-paused .animate-pulse,
+.animations-paused .animate-bounce {
+    animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-heartbeat,
+    .animate-swing,
+    .animate-twinkle,
+    .animate-float,
+    .glow-frame,
+    .animate-bounce,
+    .animate-pulse {
+        animation: none !important;
+    }
+    #stars-bg {
+        opacity: 0.15 !important;
+    }
+}
+
 @keyframes float {
     0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
     50% { transform: translateY(-20px) rotate(10deg); opacity: 1; }
