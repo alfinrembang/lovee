@@ -14,20 +14,10 @@ body { font-family: 'Inter', sans-serif; }
     }
 }
 
-/* Lazy sections: hidden from browser until user scrolls near (saves GPU/CPU) */
+/* Lazy sections: hint browser to defer paint below the fold (does not hide images) */
 .lazy-section {
+    content-visibility: auto;
     contain-intrinsic-size: auto 100vh;
-}
-
-.lazy-section:not(.section-active) {
-    content-visibility: hidden;
-    contain: strict;
-    pointer-events: none;
-}
-
-.lazy-section.section-active {
-    content-visibility: visible;
-    contain: layout style paint;
 }
 
 /* Pause infinite animations when section is off-screen */

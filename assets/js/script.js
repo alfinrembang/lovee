@@ -139,7 +139,7 @@ function setupLazySections() {
     if (!sections.length) return;
 
     if (!('IntersectionObserver' in window)) {
-        sections.forEach((section) => section.classList.add('section-active'));
+        sections.forEach((section) => section.classList.remove('animations-paused'));
         return;
     }
 
@@ -147,27 +147,27 @@ function setupLazySections() {
         entries.forEach((entry) => {
             const section = entry.target;
             if (entry.isIntersecting) {
-                section.classList.add('section-active');
                 section.classList.remove('animations-paused');
-                activateLazyImages(section);
             } else {
-                section.classList.remove('section-active');
                 section.classList.add('animations-paused');
             }
         });
-    }, { rootMargin: '120px 0px 280px 0px', threshold: 0 });
+    }, { rootMargin: '120px 0px 200px 0px', threshold: 0 });
 
     sections.forEach((section) => {
         section.classList.add('animations-paused');
         observer.observe(section);
     });
-}
 
-function activateLazyImages(section) {
-    section.querySelectorAll('img[data-src]').forEach((img) => {
-        if (!img.dataset.src) return;
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
+    // One frame after layout: unpause sections already on screen (e.g. short viewport)
+    requestAnimationFrame(() => {
+        sections.forEach((section) => {
+            const r = section.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            if (r.top < vh + 200 && r.bottom > -200) {
+                section.classList.remove('animations-paused');
+            }
+        });
     });
 }
 
