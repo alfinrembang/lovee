@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.book-sheet.book-page-slide');
+    const slides = document.querySelectorAll('.book-page-slide');
     const prevBtn = document.getElementById('book-prev');
     const nextBtn = document.getElementById('book-next');
     const dots = document.querySelectorAll('.book-dot');
