@@ -15,7 +15,7 @@
     <style>
         body {
             font-family: 'Outfit', sans-serif;
-            background: radial-gradient(circle at center, #053b2e 0%, #021f18 60%, #010705 100%);
+            background: #020617;
             min-height: 100vh;
             overflow: hidden;
         }
@@ -131,7 +131,10 @@
         }
     </style>
 </head>
-<body class="select-none overflow-hidden">
+<body class="select-none overflow-hidden bg-[#020617]">
+    
+    <!-- Stars Background Effect -->
+    <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
     
     <!-- Navigation Back Link -->
     <div class="absolute top-8 left-8 z-30">
@@ -285,8 +288,43 @@
         </div>
     </div>
 
-    <!-- Soft Ambient Lights on Bottom Corners -->
-    <div class="fixed bottom-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full -mr-32 -mb-32"></div>
-    <div class="fixed bottom-0 left-0 w-64 h-64 bg-teal-500/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
+    <!-- Star Initialization script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const starsBg = document.getElementById('stars-bg');
+            if (starsBg) {
+                const starCount = window.innerWidth < 768 ? 70 : 100;
+                const fragment = document.createDocumentFragment();
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    const isTwinkle = Math.random() > 0.6;
+                    const colorRand = Math.random();
+                    let color = '#ffffff';
+                    let shadowColor = 'rgba(255, 255, 255, 0.5)';
+                    if (colorRand > 0.85) {
+                        color = '#bae6fd';
+                        shadowColor = 'rgba(56, 189, 248, 0.8)';
+                    } else if (colorRand > 0.7) {
+                        color = '#a5f3fc';
+                        shadowColor = 'rgba(34, 211, 238, 0.8)';
+                    }
+                    star.className = `absolute rounded-full star-dot${isTwinkle ? ' animate-twinkle' : ''}`;
+                    const size = Math.random() * 3.2 + 0.8;
+                    star.style.backgroundColor = color;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.opacity = String(Math.random() * 0.8 + 0.2);
+                    star.style.animationDelay = Math.random() * 5 + 's';
+                    if (window.innerWidth >= 768) {
+                        star.style.boxShadow = `0 0 ${size * 1.5}px ${shadowColor}`;
+                    }
+                    fragment.appendChild(star);
+                }
+                starsBg.appendChild(fragment);
+            }
+        });
+    </script>
 </body>
 </html>
