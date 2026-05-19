@@ -305,10 +305,54 @@
                 </div>
 
                 <div class="flex flex-col items-center gap-6">
-                    <a href="secret.html" class="group relative flex items-center justify-center w-24 h-24 bg-gradient-to-br from-pink-500 to-rose-600 rounded-3xl shadow-2xl shadow-pink-500/40 hover:shadow-pink-500/60 hover:scale-105 transition-all duration-500 active:scale-95">
-                        <div class="absolute inset-0 bg-pink-400 blur-xl opacity-0 group-hover:opacity-40 transition-opacity"></div>
-                        <svg class="w-12 h-12 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    <a href="secret.html" class="group relative flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-500">
+                        <!-- Soft glowing background effect behind the envelope -->
+                        <div class="absolute inset-0 bg-pink-400/20 blur-2xl rounded-full scale-75 group-hover:scale-100 group-hover:bg-pink-400/35 transition-all duration-500 animate-pulse"></div>
+                        
+                        <!-- High detailed vintage cream envelope SVG with hand-painted wildflowers and lavender wax seal -->
+                        <svg class="w-32 h-24 drop-shadow-[0_10px_20px_rgba(236,72,153,0.25)] group-hover:drop-shadow-[0_15px_30px_rgba(236,72,153,0.4)] transition-all duration-500 relative z-10" viewBox="0 0 160 120">
+                            <!-- Envelope Body -->
+                            <rect x="10" y="20" width="140" height="90" rx="6" fill="#fcf6e8" stroke="#eedcb5" stroke-width="2" />
+                            
+                            <!-- Left Fold -->
+                            <path d="M10 110 L70 65 L10 20" fill="none" stroke="#e6d4ad" stroke-width="1.5" />
+                            <!-- Right Fold -->
+                            <path d="M150 110 L90 65 L150 20" fill="none" stroke="#e6d4ad" stroke-width="1.5" />
+                            <!-- Bottom Fold -->
+                            <path d="M10 110 L80 60 L150 110" fill="#fbf7ee" stroke="#eedcb5" stroke-width="1.5" />
+                            
+                            <!-- Triangular Top Flap pointing down -->
+                            <path d="M10 20 L80 65 L150 20 Z" fill="#f5ebd6" stroke="#eedcb5" stroke-width="2" />
+                            
+                            <!-- Painted Wildflowers on the flap -->
+                            <!-- Lavender Branch (left) -->
+                            <path d="M62 48 Q55 40 50 34" fill="none" stroke="#79987d" stroke-width="1" stroke-linecap="round" />
+                            <circle cx="50" cy="34" r="2.5" fill="#988bb5" />
+                            <circle cx="53" cy="37" r="2" fill="#b3a8cf" />
+                            <circle cx="56" cy="40" r="2.5" fill="#988bb5" />
+                            <circle cx="59" cy="43" r="2" fill="#b3a8cf" />
+                            <circle cx="48" cy="31" r="1.5" fill="#b3a8cf" />
+                            
+                            <!-- Pink Wildflower Stem (center) -->
+                            <path d="M80 55 Q80 40 78 30" fill="none" stroke="#79987d" stroke-width="1.2" stroke-linecap="round" />
+                            <circle cx="78" cy="30" r="3" fill="#cf9fa8" />
+                            <circle cx="78" cy="30" r="1" fill="#fef08a" />
+                            <circle cx="74" cy="35" r="2.5" fill="#d6a9b4" />
+                            <circle cx="83" cy="37" r="2.5" fill="#cf9fa8" />
+                            
+                            <!-- Green Sage Leaves (right) -->
+                            <path d="M98 48 Q103 40 108 34" fill="none" stroke="#79987d" stroke-width="1" stroke-linecap="round" />
+                            <path d="M99 45 C97 43 98 40 101 42" fill="#8ba88f" />
+                            <path d="M103 41 C101 39 102 36 105 38" fill="#8ba88f" />
+                            <path d="M107 36 C105 34 106 31 109 33" fill="#8ba88f" />
+                            <path d="M101 46 C103 47 105 45 103 43" fill="#79987d" />
+                            <path d="M105 41 C107 42 109 40 107 38" fill="#79987d" />
+                            
+                            <!-- Lavender Wax Seal tip (80, 65) -->
+                            <path d="M72 65 C72 60 77 57 82 58 C87 59 90 63 88 68 C87 73 81 74 77 72 C74 71 72 68 72 65 Z" fill="#9283ba" opacity="0.95" />
+                            <circle cx="80" cy="65" r="5" fill="#a093c4" stroke="#8474ab" stroke-width="0.7" />
+                            <!-- Mini gold/yellow star/heart highlight inside seal -->
+                            <circle cx="80" cy="65" r="1.5" fill="#fef08a" />
                         </svg>
                     </a>
                     <p class="text-pink-400/30 text-sm font-bold tracking-wider animate-pulse">(open the message)</p>
