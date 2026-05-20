@@ -157,8 +157,8 @@
         }
 
         @keyframes pulse3D {
-            0%, 100% { transform: scale(1) translateZ(10px); filter: drop-shadow(0 15px 35px rgba(244,63,94,0.45)); }
-            50% { transform: scale(1.1) translateZ(35px); filter: drop-shadow(0 25px 55px rgba(244,63,94,0.7)); }
+            0%, 100% { transform: scale(1) translateZ(10px); filter: drop-shadow(0 0 25px rgba(244,63,94,0.6)); -webkit-filter: drop-shadow(0 0 25px rgba(244,63,94,0.6)); }
+            50% { transform: scale(1.1) translateZ(35px); filter: drop-shadow(0 0 45px rgba(244,63,94,0.9)); -webkit-filter: drop-shadow(0 0 45px rgba(244,63,94,0.9)); }
         }
     </style>
 </head>
@@ -185,16 +185,19 @@
     </div>
 
     <!-- Soft Ambient Lights behind the heart -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[500px] md:h-[500px] bg-rose-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-rose-500/20 md:bg-rose-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
 
     <!-- 3D Scene Viewport -->
     <div class="scene">
         <div class="orbit-container">
             
             <!-- Central Beating 3D Heart -->
-            <div class="central-heart">
+            <div class="central-heart relative">
+                <!-- Reliable Glow Element for Mobile -->
+                <div class="absolute inset-0 bg-rose-500 rounded-full blur-[30px] md:blur-[40px] opacity-50 md:opacity-30"></div>
+                
                 <!-- Glossy pinkish-red 3D heart SVG -->
-                <svg class="w-full h-full text-rose-500" viewBox="0 0 24 24" fill="currentColor" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.3))">
+                <svg class="w-full h-full text-rose-500 relative z-10" viewBox="0 0 24 24" fill="currentColor">
                     <defs>
                         <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="#ff6b8b" />
