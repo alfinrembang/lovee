@@ -89,11 +89,21 @@ body { font-family: 'Inter', sans-serif; }
 .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
 .animate-gradient { animation: gradient 3s ease infinite; }
 
-@keyframes softPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
+@-webkit-keyframes softPulse {
+    0%, 100% { -webkit-transform: scale(1) translateZ(0); transform: scale(1) translateZ(0); }
+    50% { -webkit-transform: scale(1.03) translateZ(0); transform: scale(1.03) translateZ(0); }
 }
-.animate-soft-pulse { animation: softPulse 4s ease-in-out infinite; }
+@keyframes softPulse {
+    0%, 100% { -webkit-transform: scale(1) translateZ(0); transform: scale(1) translateZ(0); }
+    50% { -webkit-transform: scale(1.03) translateZ(0); transform: scale(1.03) translateZ(0); }
+}
+.animate-soft-pulse { 
+    -webkit-animation: softPulse 4s ease-in-out infinite;
+    animation: softPulse 4s ease-in-out infinite; 
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
 
 /* Only animate when parent has start-animations class */
 .start-animations .animate-fade-in { 
