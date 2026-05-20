@@ -155,41 +155,6 @@
             0%, 100% { transform: scale(1) translateZ(10px); filter: drop-shadow(0 15px 35px rgba(244,63,94,0.45)); }
             50% { transform: scale(1.1) translateZ(35px); filter: drop-shadow(0 25px 55px rgba(244,63,94,0.7)); }
         }
-
-        /* Premium Shooting Star Effect */
-        .shooting-star {
-            position: absolute;
-            top: -120px;
-            right: 15%;
-            width: 2.5px;
-            height: 120px;
-            background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(165, 243, 252, 0.9);
-            transform: rotate(-45deg);
-            transform-origin: center center;
-            opacity: 0;
-            z-index: 5;
-            pointer-events: none;
-            animation: shoot 7s ease-in-out infinite;
-        }
-
-        @keyframes shoot {
-            0% {
-                transform: translate(0, 0) rotate(-45deg);
-                opacity: 0;
-            }
-            2% {
-                opacity: 1;
-            }
-            35% {
-                transform: translate(-125vw, 125vh) rotate(-45deg);
-                opacity: 0;
-            }
-            100% {
-                transform: translate(-125vw, 125vh) rotate(-45deg);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body class="select-none overflow-hidden bg-[#020617]">
@@ -197,12 +162,9 @@
     <!-- Stars Background Effect -->
     <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
     
-    <!-- Shooting Star Effect -->
-    <div class="shooting-star"></div>
-    
     <!-- Navigation Back Link -->
     <div class="absolute top-8 left-8 z-30">
-        <a href="index.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-bold tracking-wider text-white/60 hover:text-white transition-all hover:scale-105 active:scale-95">
+        <a href="index.html?skip=1" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-bold tracking-wider text-white/60 hover:text-white transition-all hover:scale-105 active:scale-95">
             &larr; Beranda
         </a>
     </div>

@@ -209,38 +209,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const starsBg = document.getElementById('stars-bg');
 
     if (overlay && countText) {
-        let count = 3;
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('skip') === '1' || sessionStorage.getItem('skipCountdown') === '1') {
+            overlay.style.display = 'none';
+            document.body.classList.add('start-animations');
+            
+            // Set text directly instead of typewriting to skip the delay
+            const h1 = document.getElementById('typewriter-h1');
+            const h2 = document.getElementById('typewriter-h2');
+            const p = document.getElementById('typewriter-p');
+            const btn = document.getElementById('typewriter-btn');
+            
+            if (h1) h1.innerHTML = "Website Kenangan";
+            if (h2) h2.innerHTML = "Untuk Kamu dan Dia.";
+            if (p) p.innerHTML = "Tempat menyimpan cerita, foto, dan lagu favorit kalian berdua. Semua momen spesial tersimpan di sini.";
+            if (btn) btn.style.opacity = '1';
 
-        const timer = setInterval(() => {
-            count--;
-            if (count > 0) {
-                countText.textContent = count;
-            } else if (count === 0) {
-                countText.textContent = "❤️";
-                countText.classList.add('scale-[3]', 'transition-transform', 'duration-500');
-            } else {
-                clearInterval(timer);
-                
-                const rect = countText.getBoundingClientRect();
-                createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
-                
-                countText.style.display = 'none';
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    document.body.classList.add('start-animations');
-                    startAllTyping();
-                    if (starsBg) {
-                        const runStars = () => initStars(starsBg);
-                        if ('requestIdleCallback' in window) {
-                            requestIdleCallback(runStars, { timeout: 1500 });
-                        } else {
-                            setTimeout(runStars, 50);
-                        }
-                    }
-                }, 1000);
+            if (starsBg) {
+                const runStars = () => initStars(starsBg);
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(runStars, { timeout: 1500 });
+                } else {
+                    setTimeout(runStars, 50);
+                }
             }
-        }, 1000);
+        } else {
+            sessionStorage.setItem('skipCountdown', '1');
+            let count = 3;
+
+            const timer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countText.textContent = count;
+                } else if (count === 0) {
+                    countText.textContent = "❤️";
+                    countText.classList.add('scale-[3]', 'transition-transform', 'duration-500');
+                } else {
+                    clearInterval(timer);
+                    
+                    const rect = countText.getBoundingClientRect();
+                    createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    countText.style.display = 'none';
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        document.body.classList.add('start-animations');
+                        startAllTyping();
+                        if (starsBg) {
+                            const runStars = () => initStars(starsBg);
+                            if ('requestIdleCallback' in window) {
+                                requestIdleCallback(runStars, { timeout: 1500 });
+                            } else {
+                                setTimeout(runStars, 50);
+                            }
+                        }
+                    }, 1000);
+                }
+            }, 1000);
+        }
     }
 
     setupLazySections();
