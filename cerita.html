@@ -36,12 +36,13 @@
 
         .orbit-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 800px; /* Increased for larger orbit */
+            height: 800px; /* Increased for larger orbit */
             transform-style: preserve-3d;
             display: flex;
             align-items: center;
             justify-content: center;
+            perspective: 1200px;
         }
 
         /* Spinning 3D Orbit Ring */
@@ -56,11 +57,11 @@
         /* Individual orbiting items */
         .orbit-item {
             position: absolute;
-            width: 105px;
-            height: 145px;
+            width: 210px; /* Increased */
+            height: 285px; /* Increased */
             transform-style: preserve-3d;
-            left: calc(50% - 52.5px);
-            top: calc(50% - 72.5px);
+            left: calc(50% - 105px); /* Adjusted for new width */
+            top: calc(50% - 142.5px); /* Adjusted for new height */
         }
 
         /* 3D Double-Sided Card Container */
@@ -106,24 +107,28 @@
 
         /* 3D Orbit Positions (Radius is 290px on desktop, 165px on mobile) */
         @media (min-width: 768px) {
-            .item-1 { transform: rotateY(0deg) translateZ(290px); }
-            .item-2 { transform: rotateY(288deg) translateZ(290px); }
-            .item-3 { transform: rotateY(216deg) translateZ(290px); }
-            .item-4 { transform: rotateY(144deg) translateZ(290px); }
-            .item-5 { transform: rotateY(72deg) translateZ(290px); }
+            .item-1 { transform: rotateY(0deg) translateZ(500px); } /* Increased */
+            .item-2 { transform: rotateY(288deg) translateZ(500px); } /* Increased */
+            .item-3 { transform: rotateY(216deg) translateZ(500px); } /* Increased */
+            .item-4 { transform: rotateY(144deg) translateZ(500px); } /* Increased */
+            .item-5 { transform: rotateY(72deg) translateZ(500px); } /* Increased */
         }
         @media (max-width: 767px) {
-            .orbit-item {
-                width: 82px;
-                height: 115px;
-                left: calc(50% - 41px);
-                top: calc(50% - 57.5px);
+            .orbit-container {
+                width: 500px; /* Adjusted for mobile */
+                height: 500px; /* Adjusted for mobile */
             }
-            .item-1 { transform: rotateY(0deg) translateZ(165px); }
-            .item-2 { transform: rotateY(288deg) translateZ(165px); }
-            .item-3 { transform: rotateY(216deg) translateZ(165px); }
-            .item-4 { transform: rotateY(144deg) translateZ(165px); }
-            .item-5 { transform: rotateY(72deg) translateZ(165px); }
+            .orbit-item {
+                width: 165px; /* Increased */
+                height: 232.5px; /* Increased */
+                left: calc(50% - 82.5px); /* Adjusted for new width */
+                top: calc(50% - 116.25px); /* Adjusted for new height */
+            }
+            .item-1 { transform: rotateY(0deg) translateZ(275px); } /* Increased */
+            .item-2 { transform: rotateY(288deg) translateZ(210px); } /* Increased */
+            .item-3 { transform: rotateY(216deg) translateZ(210px); } /* Increased */
+            .item-4 { transform: rotateY(144deg) translateZ(210px); } /* Increased */
+            .item-5 { transform: rotateY(72deg) translateZ(210px); } /* Increased */
         }
 
         @keyframes spinParent {
