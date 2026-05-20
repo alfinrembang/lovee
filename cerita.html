@@ -427,25 +427,39 @@
 
         // Deteksi Scroll Mouse
         window.addEventListener('wheel', (e) => {
-            // Jika scroll ke bawah/kanan, nambah velocity
-            velocity -= e.deltaY * 0.05;
-            velocity -= e.deltaX * 0.05;
+            // Hanya mendeteksi scroll ke kiri/kanan (contoh: pakai touchpad)
+            if (Math.abs(e.deltaX) > 0) {
+                velocity -= e.deltaX * 0.05;
+            }
         });
 
         // Deteksi Swipe (Touch) di HP
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchLastX = 0;
+        let isHorizontalSwipe = false;
 
         window.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
             touchLastX = touchStartX;
+            isHorizontalSwipe = false;
         }, {passive: true});
 
         window.addEventListener('touchmove', (e) => {
             const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
             const deltaX = currentX - touchLastX;
+            const totalDeltaX = Math.abs(currentX - touchStartX);
+            const totalDeltaY = Math.abs(currentY - touchStartY);
             
-            // Geser ke kanan (deltaX positif) mutar ke kiri dll
+            // Jika geseran lebih dominan atas/bawah (vertikal), biarkan halaman ter-scroll dan jangan putar objek 3D
+            if (totalDeltaY > totalDeltaX && !isHorizontalSwipe) {
+                return;
+            }
+            
+            isHorizontalSwipe = true;
+            // Geser ke kanan (deltaX positif) memutar
             velocity += deltaX * 0.15;
             
             touchLastX = currentX;
