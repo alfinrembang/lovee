@@ -22,7 +22,7 @@
             font-family: 'Outfit', sans-serif;
             background: #020617;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .scene {
@@ -205,7 +205,7 @@
         }
     </style>
 </head>
-<body class="select-none overflow-hidden bg-[#020617]">
+<body class="select-none overflow-x-hidden bg-[#020617]">
     
     <!-- Stars Background Effect -->
     <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
@@ -231,7 +231,7 @@
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-rose-500/20 md:bg-rose-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
 
     <!-- 3D Scene Viewport -->
-    <div class="scene">
+    <div class="scene relative">
         <div class="orbit-container">
             
             <!-- Central Beating 3D Heart -->
@@ -342,7 +342,42 @@
 
 
         </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-30 text-xs uppercase tracking-widest text-white z-20 pointer-events-none">
+            Scroll Down &darr;
+        </div>
     </div>
+
+    <!-- New Section with 3 Boxes -->
+    <section class="relative min-h-screen py-24 flex flex-col items-center justify-center bg-gradient-to-b from-[#020617] to-[#0f172a] px-8 z-10">
+        <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Box 1 -->
+            <div class="glass-card p-8 rounded-3xl flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Kenangan 1</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Isi dengan cerita indah tentang kenangan pertama di sini.</p>
+            </div>
+            <!-- Box 2 -->
+            <div class="glass-card p-8 rounded-3xl flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Kenangan 2</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Ceritakan hal yang paling berkesan saat bersama.</p>
+            </div>
+            <!-- Box 3 -->
+            <div class="glass-card p-8 rounded-3xl flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-2xl bg-rose-500/10 flex items-center justify-center text-rose-500 mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Kenangan 3</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Tuliskan harapan dan doa untuk masa depan bersama.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" onclick="closeLightbox(event)">
