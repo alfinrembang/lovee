@@ -89,6 +89,12 @@ body { font-family: 'Inter', sans-serif; }
 .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
 .animate-gradient { animation: gradient 3s ease infinite; }
 
+@keyframes softPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+.animate-soft-pulse { animation: softPulse 4s ease-in-out infinite; }
+
 /* Only animate when parent has start-animations class */
 .start-animations .animate-fade-in { 
     animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
