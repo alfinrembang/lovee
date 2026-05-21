@@ -105,19 +105,29 @@ function initStars(starsBg) {
         const star = document.createElement('div');
         const isTwinkle = Math.random() > 0.6;
         const colorRand = Math.random();
-        let color = '#ffffff';
-        let shadowColor = 'rgba(255, 255, 255, 0.5)';
-        if (colorRand > 0.85) {
-            color = '#bae6fd';
-            shadowColor = 'rgba(56, 189, 248, 0.8)';
-        } else if (colorRand > 0.7) {
-            color = '#a5f3fc';
-            shadowColor = 'rgba(34, 211, 238, 0.8)';
+        
+        let bgStyle = '';
+        let shadowStyle = '';
+        const size = Math.random() * 3.2 + 0.8;
+
+        // Bintang gradasi Pink-Biru utama
+        if (colorRand > 0.6) {
+            bgStyle = 'radial-gradient(circle, #FF1493 0%, #00D2FF 100%)';
+            shadowStyle = `0 0 ${size * 1.5}px rgba(255, 20, 147, 0.5), 0 0 ${size * 2.5}px rgba(0, 210, 255, 0.5)`;
+        } 
+        // Bintang variasi Pink Cerah
+        else if (colorRand > 0.3) {
+            bgStyle = '#FF1493';
+            shadowStyle = `0 0 ${size * 2}px rgba(255, 20, 147, 0.7)`;
+        } 
+        // Bintang variasi Biru Cerah
+        else {
+            bgStyle = '#00D2FF';
+            shadowStyle = `0 0 ${size * 2}px rgba(0, 210, 255, 0.7)`;
         }
 
         star.className = `absolute rounded-full star-dot${isTwinkle ? ' animate-twinkle' : ''}`;
-        const size = Math.random() * 3.2 + 0.8;
-        star.style.backgroundColor = color;
+        star.style.background = bgStyle;
         star.style.width = size + 'px';
         star.style.height = size + 'px';
         star.style.left = Math.random() * 100 + '%';
@@ -125,7 +135,7 @@ function initStars(starsBg) {
         star.style.opacity = String(Math.random() * 0.8 + 0.2);
         star.style.animationDelay = Math.random() * 5 + 's';
         if (!isMobile) {
-            star.style.boxShadow = `0 0 ${size * 1.5}px ${shadowColor}`;
+            star.style.boxShadow = shadowStyle;
         }
         fragment.appendChild(star);
     }
