@@ -1,9 +1,7 @@
 /**
- * Interactive 3D Scrapbook — page-flip with CSS 3D transforms
+ * Interactive 3D Scrapbook — page-flip + geser buku ke kanan saat membalik
  */
 (function () {
-    const TOTAL_PAGES = 5;
-
     function initScrapbook() {
         const modal = document.getElementById('scrapbook-modal');
         const openBtn = document.getElementById('scrapbook-open-btn');
@@ -12,12 +10,34 @@
         const nextBtn = document.getElementById('scrapbook-next');
         const indicator = document.getElementById('scrapbook-page-num');
         const book = document.getElementById('scrapbook-book');
+        const stage = document.querySelector('.scrapbook-stage');
 
         if (!modal || !book) return;
 
         const sheets = Array.from(book.querySelectorAll('.scrapbook-sheet'));
+        const TOTAL_PAGES = sheets.length;
         let currentIndex = 0;
         let isAnimating = false;
+
+        function getShiftPx(index) {
+            if (index <= 0) return 0;
+            const w = window.innerWidth;
+            const step = w < 480 ? 32 : w < 768 ? 44 : 52;
+            const maxShift = w * (w < 768 ? 0.32 : 0.26);
+            return Math.min(index * step, maxShift);
+        }
+
+        function updateBookShift() {
+            if (!stage) return;
+            const shift = getShiftPx(currentIndex);
+            stage.style.setProperty('--book-shift', `${shift}px`);
+            stage.dataset.pageIndex = String(currentIndex);
+            if (currentIndex === 0) {
+                stage.classList.remove('is-flipping');
+            } else {
+                stage.classList.add('is-flipping');
+            }
+        }
 
         function updateUI() {
             if (indicator) {
@@ -25,6 +45,7 @@
             }
             if (prevBtn) prevBtn.disabled = currentIndex === 0 || isAnimating;
             if (nextBtn) nextBtn.disabled = currentIndex >= TOTAL_PAGES - 1 || isAnimating;
+            updateBookShift();
         }
 
         function applySheetStates() {
@@ -65,13 +86,15 @@
             currentIndex = 0;
             sheets.forEach((s) => s.classList.remove('is-turned', 'is-current'));
             if (sheets[0]) sheets[0].classList.add('is-current');
-            updateUI();
+            applySheetStates();
         }
 
         function closeModal() {
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('scrapbook-modal-open');
+            currentIndex = 0;
+            applySheetStates();
         }
 
         if (openBtn) openBtn.addEventListener('click', openModal);
@@ -99,6 +122,10 @@
             if (diff < 0) nextPage();
             else prevPage();
         }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            if (modal.classList.contains('is-open')) updateBookShift();
+        });
 
         applySheetStates();
     }
