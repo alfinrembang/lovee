@@ -130,10 +130,16 @@ body.secret-unlocked .scrapbook-trigger-section {
     background: var(--sb-pink);
 }
 
-/* --- 3D Book stage --- */
+/* --- 3D Book stage (sama di HP & laptop) --- */
+.scrapbook-modal {
+    font-family: 'Outfit', system-ui, sans-serif;
+}
+
 .scrapbook-stage {
     width: 100%;
     max-width: 520px;
+    display: flex;
+    justify-content: center;
     perspective: 2200px;
     perspective-origin: 32% 45%;
     overflow: visible;
@@ -148,15 +154,30 @@ body.secret-unlocked .scrapbook-trigger-section {
 
 .scrapbook-book {
     position: relative;
-    width: min(100%, 420px);
+    width: min(88vw, 380px);
     aspect-ratio: 4 / 5;
     max-height: min(68dvh, 520px);
-    margin: 0;
-    margin-left: 0;
+    margin: 0 auto;
     transform-style: preserve-3d;
+    flex-shrink: 0;
 }
 
-/* Halaman sampul */
+/* Halaman sampul — gradient tengah, tanpa garis buku (HP & laptop) */
+.scrapbook-page-inner.scrapbook-cover {
+    background: linear-gradient(155deg, var(--sb-blue-soft) 0%, var(--sb-pink) 55%, #fce7f3 100%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    text-align: center;
+}
+
+.scrapbook-page-inner.scrapbook-cover::before {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+}
+
 .scrapbook-cover {
     background: linear-gradient(155deg, var(--sb-blue-soft) 0%, var(--sb-pink) 55%, #fce7f3 100%);
     display: flex;
@@ -185,11 +206,12 @@ body.secret-unlocked .scrapbook-trigger-section {
 }
 
 .scrapbook-cover-title {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', cursive !important;
     font-size: clamp(2.5rem, 10vw, 3.5rem);
     color: #9d174d;
     margin: 0 0 0.5rem;
     line-height: 1.1;
+    text-align: center;
     text-shadow: 0 2px 0 rgba(255, 255, 255, 0.5);
 }
 
@@ -481,13 +503,23 @@ body.scrapbook-modal-open {
     overflow: hidden;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
     .scrapbook-stage.is-flipping {
-        perspective-origin: 18% 42%;
+        perspective-origin: 22% 45%;
     }
 
     .scrapbook-book {
         width: min(88vw, 380px);
+    }
+
+    .scrapbook-cover-content {
+        padding: 1.75rem 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .scrapbook-stage.is-flipping {
+        perspective-origin: 18% 42%;
     }
 }
 

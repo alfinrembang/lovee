@@ -15,7 +15,13 @@
         if (!modal || !book) return;
 
         const sheets = Array.from(book.querySelectorAll('.scrapbook-sheet'));
+        const declaredTotal = parseInt(book.dataset.totalPages, 10);
         const TOTAL_PAGES = sheets.length;
+        if (declaredTotal && declaredTotal !== TOTAL_PAGES) {
+            console.warn(
+                `Scrapbook: data-total-pages=${declaredTotal} but found ${TOTAL_PAGES} sheet(s). Update secret.html.`
+            );
+        }
         let currentIndex = 0;
         let isAnimating = false;
 
