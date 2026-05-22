@@ -518,8 +518,11 @@ body.scrapbook-modal-open {
 }
 
 @media (max-width: 767px) {
-    .scrapbook-stage.is-flipping {
-        perspective-origin: 18% 42%;
+    .scrapbook-stage,
+    .scrapbook-stage.is-flipping,
+    .scrapbook-stage.is-mobile-stage {
+        transform: translateX(0) !important;
+        perspective-origin: 50% 45%;
     }
 }
 

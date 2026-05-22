@@ -25,11 +25,17 @@
         let currentIndex = 0;
         let isAnimating = false;
 
+        const MOBILE_MAX_WIDTH = 767;
+
+        function isMobileViewport() {
+            return window.innerWidth <= MOBILE_MAX_WIDTH;
+        }
+
         function getShiftPx(index) {
-            if (index <= 0) return 0;
+            if (index <= 0 || isMobileViewport()) return 0;
             const w = window.innerWidth;
-            const step = w < 480 ? 32 : w < 768 ? 44 : 52;
-            const maxShift = w * (w < 768 ? 0.32 : 0.26);
+            const step = 52;
+            const maxShift = w * 0.26;
             return Math.min(index * step, maxShift);
         }
 
@@ -38,11 +44,9 @@
             const shift = getShiftPx(currentIndex);
             stage.style.setProperty('--book-shift', `${shift}px`);
             stage.dataset.pageIndex = String(currentIndex);
-            if (currentIndex === 0) {
-                stage.classList.remove('is-flipping');
-            } else {
-                stage.classList.add('is-flipping');
-            }
+            const shouldShift = currentIndex > 0 && !isMobileViewport();
+            stage.classList.toggle('is-flipping', shouldShift);
+            stage.classList.toggle('is-mobile-stage', isMobileViewport());
         }
 
         function updateUI() {
