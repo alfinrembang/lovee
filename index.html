@@ -27,11 +27,20 @@
         <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
 
         <!-- Section 1: Hero -->
-        <section id="hero-section" class="relative min-h-screen flex flex-col items-center justify-center text-center px-8">
+        <section id="hero-section" class="relative min-h-screen flex flex-col items-center justify-center text-center px-8 overflow-hidden">
+            <!-- Background Images Side-by-Side -->
+            <div class="absolute inset-0 z-0 flex">
+                <div class="flex-1 h-full bg-cover bg-center" style="background-image: url('assets/images/arnil8.png');"></div>
+                <div class="flex-1 h-full bg-cover bg-center" style="background-image: url('assets/images/arnil9.png');"></div>
+                <div class="flex-1 h-full bg-cover bg-center" style="background-image: url('assets/images/arnil10.png');"></div>
+            </div>
+            <!-- Overlay to ensure text readability -->
+            <div class="absolute inset-0 z-0 bg-black/50"></div>
+
             <div class="relative z-10 max-w-4xl mx-auto space-y-6">
-                <h1 id="typewriter-h1" class="text-5xl md:text-7xl font-black tracking-tight text-slate-900 min-h-[1.2em]"></h1>
-                <h2 id="typewriter-h2" class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent italic min-h-[1.2em]"></h2>
-                <p id="typewriter-p" class="text-gray-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed min-h-[3em]"></p>
+                <h1 id="typewriter-h1" class="text-5xl md:text-7xl font-black tracking-tight text-white drop-shadow-lg min-h-[1.2em]"></h1>
+                <h2 id="typewriter-h2" class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent italic min-h-[1.2em] drop-shadow-md"></h2>
+                <p id="typewriter-p" class="text-slate-200 max-w-xl mx-auto text-sm md:text-base font-medium leading-relaxed min-h-[3em] drop-shadow-sm"></p>
                 
                 <div id="typewriter-btn" class="pt-8 opacity-0">
                     <a href="cerita.html" class="inline-block px-10 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-full font-bold shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:shadow-[0_0_30px_rgba(236,72,153,0.8)] transition-all hover:scale-105 active:scale-95">
@@ -41,7 +50,7 @@
             </div>
 
             <!-- Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-30 text-xs uppercase tracking-widest">
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-60 text-xs uppercase tracking-widest text-white drop-shadow-sm">
                 Scroll Down ↓
             </div>
         </section>
