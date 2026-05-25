@@ -141,14 +141,15 @@ body.secret-unlocked .scrapbook-trigger-section {
     max-width: 520px;
     display: flex;
     justify-content: center;
+    align-items: center;
     perspective: 2200px;
-    perspective-origin: 32% 45%;
+    perspective-origin: 50% 45%;
     overflow: visible;
     margin: 0 auto;
 }
 
 .scrapbook-stage.is-flipping {
-    perspective-origin: 22% 45%;
+    perspective-origin: 50% 45%;
 }
 
 .scrapbook-book {
@@ -535,12 +536,18 @@ body.scrapbook-modal-open {
 }
 
 @media (min-width: 768px) {
-    .scrapbook-stage.is-flipping {
-        perspective-origin: 22% 45%;
+    .scrapbook-popup {
+        align-items: center;
+    }
+
+    .scrapbook-stage {
+        justify-content: center;
     }
 
     .scrapbook-book {
         width: min(88vw, 380px);
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .scrapbook-cover-content {

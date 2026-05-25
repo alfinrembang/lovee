@@ -1,5 +1,5 @@
 /**
- * Interactive 3D Scrapbook — page-flip + geser buku ke kanan saat membalik
+ * Interactive 3D Scrapbook — page-flip; buku tetap di tengah (laptop & HP)
  */
 (function () {
     function initScrapbook() {
@@ -31,21 +31,13 @@
             return window.innerWidth <= MOBILE_MAX_WIDTH;
         }
 
-        function getShiftPx(index) {
-            if (index <= 0 || isMobileViewport()) return 0;
-            const w = window.innerWidth;
-            const step = 52;
-            const maxShift = w * 0.26;
-            return Math.min(index * step, maxShift);
-        }
-
         function updateBookShift() {
             if (!stage) return;
-            const shift = getShiftPx(currentIndex);
-            stage.style.setProperty('--book-shift', `${shift}px`);
+            /* Laptop & HP: buku tetap di tengah — tidak digeser saat membalik halaman */
+            stage.style.setProperty('--book-shift', '0px');
             stage.dataset.pageIndex = String(currentIndex);
-            const shouldShift = currentIndex > 0 && !isMobileViewport();
-            stage.classList.toggle('is-flipping', shouldShift);
+            const flipping = currentIndex > 0 && !isMobileViewport();
+            stage.classList.toggle('is-flipping', flipping);
             stage.classList.toggle('is-mobile-stage', isMobileViewport());
         }
 
