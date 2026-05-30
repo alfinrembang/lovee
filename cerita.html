@@ -20,7 +20,7 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background: #020617;
+            background: linear-gradient(135deg, #0a0a1a 0%, #0d1b3e 50%, #1a0a2e 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -207,10 +207,15 @@
         }
     </style>
 </head>
-<body class="select-none overflow-x-hidden bg-[#020617]">
+<body class="select-none overflow-x-hidden" style="background: linear-gradient(135deg, #0a0a1a 0%, #0d1b3e 50%, #1a0a2e 100%);">
     
     <!-- Stars Background Effect -->
-    <div class="fixed inset-0 pointer-events-none opacity-30" id="stars-bg"></div>
+    <div class="fixed inset-0 pointer-events-none opacity-50" id="stars-bg"></div>
+
+    <!-- Galaxy Glowing Orbs -->
+    <div class="fixed pointer-events-none" style="top:10%; left:5%; width:400px; height:400px; border-radius:50%; background: radial-gradient(circle, rgba(255,20,147,0.15), transparent 70%); filter:blur(60px);"></div>
+    <div class="fixed pointer-events-none" style="bottom:15%; right:5%; width:350px; height:350px; border-radius:50%; background: radial-gradient(circle, rgba(0,210,255,0.15), transparent 70%); filter:blur(60px);"></div>
+    <div class="fixed pointer-events-none" style="top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:600px; border-radius:50%; background: radial-gradient(circle, rgba(99,60,180,0.08), transparent 70%); filter:blur(80px);"></div>
     
     <!-- Navigation Back Link -->
     <div class="absolute top-4 left-4 md:top-8 md:left-8 z-30">
