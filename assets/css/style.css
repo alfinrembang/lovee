@@ -1,6 +1,10 @@
 /* Main Styles & Animations */
 body { font-family: 'Inter', sans-serif; }
 
+.font-latin {
+    font-family: 'Dancing Script', cursive;
+}
+
 /* Glass cards: blur on desktop only (lighter on mobile GPU) */
 .glass-card {
     background: rgba(255, 255, 255, 0.07);

@@ -243,13 +243,14 @@ function handleWelcomeYes() {
     const welcomeOverlay = document.getElementById('welcome-overlay');
     const countdownOverlay = document.getElementById('countdown-overlay');
 
-    // Fade out welcome
+    // Tampilkan countdown di BELAKANG welcome dulu sebelum fade
+    countdownOverlay.style.removeProperty('display');
+    countdownOverlay.style.display = 'flex';
+
+    // Baru fade out welcome
     welcomeOverlay.style.opacity = '0';
     setTimeout(() => {
         welcomeOverlay.style.display = 'none';
-        // Show countdown
-        countdownOverlay.style.removeProperty('display');
-        countdownOverlay.style.display = 'flex';
         startCountdown();
     }, 700);
 }
