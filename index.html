@@ -359,6 +359,126 @@
             </div>
         </section>
 
+        <!-- Section 4.5: Mood Letters Capsule -->
+        <section id="mood-section" class="lazy-section relative min-h-screen py-24 flex flex-col items-center justify-center bg-[#D4EBF8] px-6">
+            <div class="max-w-4xl w-full text-center space-y-12 z-10">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3182CE]/10 border border-[#3182CE]/20 text-[#3182CE] text-xs font-bold uppercase tracking-widest">
+                        💌 Kapsul Surat Dari Aku
+                    </div>
+                    <h2 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#0B2F61] to-[#FF1493] bg-clip-text text-transparent font-latin pb-2">Buka Saat Kamu...</h2>
+                    <p class="text-[#4A5568] text-sm md:text-base font-semibold max-w-2xl mx-auto leading-relaxed">
+                        Arnel, kalau nanti kamu lagi ngerasa sedih, kangen, capek, kesel, atau lagi bahagia, coba pilih salah satu amplop di bawah ini yaa. Ada pesan kecil dari aku buat kamu.
+                    </p>
+                </div>
+
+                <!-- Envelope Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-3xl mx-auto">
+                    <!-- Card 1: Sedih -->
+                    <div onclick="openMoodModal('sad')" class="envelope-card cursor-pointer bg-white/50 border border-white/80 p-6 rounded-3xl flex flex-col items-center gap-3">
+                        <div class="text-3xl">😢</div>
+                        <p class="text-[#0B2F61] font-bold text-xs">Sedih / Capek</p>
+                    </div>
+                    <!-- Card 2: Kangen -->
+                    <div onclick="openMoodModal('miss')" class="envelope-card cursor-pointer bg-white/50 border border-white/80 p-6 rounded-3xl flex flex-col items-center gap-3">
+                        <div class="text-3xl">🥺</div>
+                        <p class="text-[#0B2F61] font-bold text-xs">Kangen Kamu</p>
+                    </div>
+                    <!-- Card 3: Ngambek -->
+                    <div onclick="openMoodModal('angry')" class="envelope-card cursor-pointer bg-white/50 border border-white/80 p-6 rounded-3xl flex flex-col items-center gap-3">
+                        <div class="text-3xl">😡</div>
+                        <p class="text-[#0B2F61] font-bold text-xs">Lagi Kesel</p>
+                    </div>
+                    <!-- Card 4: Gabut -->
+                    <div onclick="openMoodModal('bored')" class="envelope-card cursor-pointer bg-white/50 border border-white/80 p-6 rounded-3xl flex flex-col items-center gap-3">
+                        <div class="text-3xl">🥱</div>
+                        <p class="text-[#0B2F61] font-bold text-xs">Gabut / Bosan</p>
+                    </div>
+                    <!-- Card 5: Senang -->
+                    <div onclick="openMoodModal('happy')" class="envelope-card cursor-pointer bg-white/50 border border-white/80 p-6 rounded-3xl flex flex-col items-center gap-3 col-span-2 md:col-span-1">
+                        <div class="text-3xl">😊</div>
+                        <p class="text-[#0B2F61] font-bold text-xs">Lagi Happy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mood Modals Container -->
+        <div id="mood-modal-sad" class="mood-modal">
+            <div class="mood-modal-backdrop" onclick="closeMoodModal('sad')"></div>
+            <div class="mood-modal-content">
+                <div class="mood-paper-lines"></div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">😢</span>
+                    <h3 class="text-2xl font-bold font-latin mb-4 text-[#0B2F61]">Semangat ya arnel cantikk...</h3>
+                    <p class="leading-relaxed font-medium text-sm text-[#2d2013]/90 mb-6 font-serif italic">
+                        "Semangat ya arnel cantikk... aku tau hari-harimu kadang capek banget, apalagi kegiatan kamu padat. Tapi inget ya, kamu itu hebat banget, aku bangga sama kamu. Jangan lupa istirahat, minum air putih, dan kalau butuh tempat cerita, aku selalu di sini buat kamu. Semangat terus arnel! 🤍"
+                    </p>
+                    <button onclick="closeMoodModal('sad')" class="px-6 py-2 rounded-full text-white text-xs font-bold transition-transform hover:scale-105 active:scale-95 shadow-md" style="background: linear-gradient(135deg, #e8527a, #c0395f);">Tutup Surat</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mood-modal-miss" class="mood-modal">
+            <div class="mood-modal-backdrop" onclick="closeMoodModal('miss')"></div>
+            <div class="mood-modal-content">
+                <div class="mood-paper-lines"></div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">🥺</span>
+                    <h3 class="text-2xl font-bold font-latin mb-4 text-[#0B2F61]">Kangen juga ya? Hehe...</h3>
+                    <p class="leading-relaxed font-medium text-sm text-[#2d2013]/90 mb-6 font-serif italic">
+                        "Kangen juga ya? Hehe sama kok, aku juga sering kangen manja-manjanya kamu. Makanya aku buatin website ini, biar kalau kamu kangen, kamu bisa putar playlist lagu kita, lihat-lihat lagi foto-foto kita di halaman cerita, atau buka scrapbook. Semoga bisa sedikit mengobati rasa kangenmu yaa. Love you! 💖"
+                    </p>
+                    <button onclick="closeMoodModal('miss')" class="px-6 py-2 rounded-full text-white text-xs font-bold transition-transform hover:scale-105 active:scale-95 shadow-md" style="background: linear-gradient(135deg, #e8527a, #c0395f);">Tutup Surat</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mood-modal-angry" class="mood-modal">
+            <div class="mood-modal-backdrop" onclick="closeMoodModal('angry')"></div>
+            <div class="mood-modal-content">
+                <div class="mood-paper-lines"></div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">😡</span>
+                    <h3 class="text-2xl font-bold font-latin mb-4 text-[#0B2F61]">Jangan cemberut terus dong...</h3>
+                    <p class="leading-relaxed font-medium text-sm text-[#2d2013]/90 mb-6 font-serif italic">
+                        "Yah, arnel lagi ngambek ya? Maaf yaa kalau aku ada salah yang bikin kamu kesel. Jangan cemberut terus dong, nanti cantiknya berkurang loh hehe. Coba deh dengerin lagu 'Sempurna' di playlist depan, tarik napas pelan-pelan, terus kalau udah tenang, kabari aku ya. Aku siap dengerin unek-unek kamu. Jangan ngambek lagi yaa 🥺✨"
+                    </p>
+                    <button onclick="closeMoodModal('angry')" class="px-6 py-2 rounded-full text-white text-xs font-bold transition-transform hover:scale-105 active:scale-95 shadow-md" style="background: linear-gradient(135deg, #e8527a, #c0395f);">Tutup Surat</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mood-modal-bored" class="mood-modal">
+            <div class="mood-modal-backdrop" onclick="closeMoodModal('bored')"></div>
+            <div class="mood-modal-content">
+                <div class="mood-paper-lines"></div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">🥱</span>
+                    <h3 class="text-2xl font-bold font-latin mb-4 text-[#0B2F61]">Lagi gabut ya? Hehe...</h3>
+                    <p class="leading-relaxed font-medium text-sm text-[#2d2013]/90 mb-6 font-serif italic">
+                        "Lagi gabut ya? Gabutnya produktif dong, coba buka halaman Cerita 3D atau mainin scrapbook di halaman pesan rahasia, lihat-lihat detail fotonya. Atau kalau bener-bener gak tahu mau ngapain, coba dengerin lagu-lagu di playlist kita sambil tiduran. Semoga rasa gabutmu hilang yaa! 🌸"
+                    </p>
+                    <button onclick="closeMoodModal('bored')" class="px-6 py-2 rounded-full text-white text-xs font-bold transition-transform hover:scale-105 active:scale-95 shadow-md" style="background: linear-gradient(135deg, #e8527a, #c0395f);">Tutup Surat</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mood-modal-happy" class="mood-modal">
+            <div class="mood-modal-backdrop" onclick="closeMoodModal('happy')"></div>
+            <div class="mood-modal-content">
+                <div class="mood-paper-lines"></div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">😊</span>
+                    <h3 class="text-2xl font-bold font-latin mb-4 text-[#0B2F61]">Senang banget aku dengarnya!</h3>
+                    <p class="leading-relaxed font-medium text-sm text-[#2d2013]/90 mb-6 font-serif italic">
+                        "Wah, hari ini harinya arnel menyenangkan ya? Seneng banget aku dengarnya! Pertahankan terus mood bahagianya yaa. Semoga hari-harimu selalu dipenuhi dengan tawa dan hal-hal baik. Jangan lupa bersyukur dan bagikan kebahagiaanmu hari ini ke orang-orang terdekat, termasuk aku yaa! Hehehe 🌟"
+                    </p>
+                    <button onclick="closeMoodModal('happy')" class="px-6 py-2 rounded-full text-white text-xs font-bold transition-transform hover:scale-105 active:scale-95 shadow-md" style="background: linear-gradient(135deg, #e8527a, #c0395f);">Tutup Surat</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Section 5: Beating Heart & Secret Message -->
         <section class="lazy-section relative min-h-screen flex flex-col items-center justify-center text-center bg-[#D4EBF8] px-6 py-24">
             <div class="flex flex-col items-center justify-center gap-16 animate-fade-in delay-1">
@@ -437,6 +557,8 @@
     <!-- Audio Player (Hidden) -->
     <audio id="main-audio" style="display:none;"></audio>
 
+    <!-- Global Music Player -->
+    <script src="assets/js/music-global.js" defer></script>
     <!-- Main Logic -->
     <script src="assets/js/script.js" defer></script>
 </body>

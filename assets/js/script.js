@@ -1,53 +1,50 @@
-// Music Playlist Data (Pointing to your local files)
-// Masukkan file lagu Anda ke folder assets/music/ dengan nama yang sesuai di bawah ini
-const songs = {
-    'sempurna': 'assets/music/sempurna.mp3',
-    'somebodys-pleasure': 'assets/music/somebodys-pleasure.mp3',
-    'terpukau': 'assets/music/terpukau.mp3'
-};
-
-let audioPlayer = new Audio();
-let currentPlaying = null;
-let currentBtn = null;
-
+// Synchronized Global Music Controller
 function playMusic(songKey, btn) {
-    // If clicking the same song
-    if (currentPlaying === songKey) {
-        if (audioPlayer.paused) {
-            audioPlayer.play().catch(e => {
-                alert("File lagu tidak ditemukan! Pastikan Anda sudah menaruh file '" + songs[songKey] + "' di folder project.");
-                console.error("Playback failed:", e);
-            });
-            btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
-        } else {
-            audioPlayer.pause();
-            btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
-        }
-        return;
-    }
-
-    // Changing song
-    if (currentBtn) {
-        currentBtn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
-    }
-
-    audioPlayer.pause();
-    audioPlayer.src = songs[songKey];
-    audioPlayer.load();
+    if (!window.LoveeMusic) return;
     
-    audioPlayer.play().then(() => {
-        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
-        currentPlaying = songKey;
-        currentBtn = btn;
-    }).catch(err => {
-        alert("File lagu '" + songs[songKey] + "' belum ada atau tidak terbaca. Harap masukkan file MP3 ke folder tersebut.");
-        console.error("Audio Play Error:", err);
-    });
+    if (window.LoveeMusic.currentKey === songKey && window.LoveeMusic.isPlaying) {
+        window.LoveeMusic.pause();
+    } else {
+        window.LoveeMusic.play(songKey);
+    }
+}
 
-    audioPlayer.onended = () => {
-        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
-        currentPlaying = null;
-    };
+// Sync UI buttons with Global Music state
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.LoveeMusic) {
+        window.LoveeMusic.registerCallback((currentKey, isPlaying) => {
+            const buttons = document.querySelectorAll('button[onclick*="playMusic"]');
+            buttons.forEach(btn => {
+                const onclickAttr = btn.getAttribute('onclick') || '';
+                const match = onclickAttr.match(/playMusic\(['"]([^'"]+)['"]/);
+                if (match) {
+                    const songKey = match[1];
+                    if (songKey === currentKey && isPlaying) {
+                        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>Pause Song</span>';
+                    } else {
+                        btn.innerHTML = '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play Song</span>';
+                    }
+                }
+            });
+        });
+    }
+});
+
+// Mood Letters Modal Handlers
+function openMoodModal(mood) {
+    const modal = document.getElementById('mood-modal-' + mood);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.classList.add('overflow-hidden');
+    }
+}
+
+function closeMoodModal(mood) {
+    const modal = document.getElementById('mood-modal-' + mood);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.classList.remove('overflow-hidden');
+    }
 }
 
 // Particle Explosion Function (single rAF loop — lighter on mobile)
