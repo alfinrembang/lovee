@@ -16,8 +16,43 @@
 </head>
 <body class="selection:bg-pink-200 selection:text-pink-900 bg-[#F9F9FB] text-slate-900">
     <div class="relative overflow-x-hidden font-sans">
+        <!-- Welcome Greeting Overlay -->
+        <div id="welcome-overlay" class="fixed inset-0 z-[110] flex items-center justify-center transition-opacity duration-700" style="background: linear-gradient(135deg, #0a0a1a 0%, #0d1b3e 50%, #1a0a2e 100%);">
+            <!-- Floating stars background -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none" id="welcome-stars"></div>
+            
+            <!-- Glowing orbs -->
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full opacity-20 blur-[80px]" style="background: radial-gradient(circle, #FF1493, transparent);"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-20 blur-[80px]" style="background: radial-gradient(circle, #00D2FF, transparent);"></div>
+
+            <div class="relative z-10 text-center px-8 max-w-lg mx-auto">
+                <!-- Cute icon/emoji -->
+                <div class="text-5xl mb-6 animate-bounce">🌸</div>
+
+                <!-- Main heading -->
+                <h1 class="font-black leading-tight mb-3" style="font-size: clamp(2.5rem, 8vw, 5rem); background: linear-gradient(135deg, #ffffff 0%, #FFB3D9 50%, #FF1493 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    alloooo<br>arnelll
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-white/60 text-sm md:text-base font-medium tracking-wide mb-10 leading-relaxed">
+                    mau lanjut lagi buat<br>lihat kenangannya kamuu? 🤍
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button id="welcome-yes" onclick="handleWelcomeYes()" class="w-full sm:w-auto px-10 py-3.5 rounded-full font-bold text-white text-sm md:text-base tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(255,20,147,0.7)]" style="background: linear-gradient(135deg, #FF1493, #C71585); box-shadow: 0 0 20px rgba(255,20,147,0.4);">
+                        okeeyyy ✨
+                    </button>
+                    <button id="welcome-no" onclick="handleWelcomeNo()" class="w-full sm:w-auto px-10 py-3.5 rounded-full font-bold text-white/50 text-sm md:text-base tracking-wide border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95 hover:text-white hover:border-white/40 bg-white/5 hover:bg-white/10">
+                        tidakk
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Countdown Overlay -->
-        <div id="countdown-overlay" class="fixed inset-0 z-[100] bg-[#F9F9FB] flex items-center justify-center transition-opacity duration-1000">
+        <div id="countdown-overlay" class="fixed inset-0 z-[100] bg-[#F9F9FB] flex items-center justify-center transition-opacity duration-1000" style="display:none!important;">
             <div id="countdown-text" class="text-8xl md:text-9xl font-black text-pink-500 animate-bounce">
                 3
             </div>
@@ -386,7 +421,7 @@
 
         <!-- Footer -->
         <footer class="relative z-10 py-12 text-center text-[#0B2F61]/50 text-xs font-medium">
-            &copy; 2026 Lovee Indonesia. Crafted with ❤️ for you.
+            &copy; LOVEEEE YOUUUU MOREEE ARNELLLL ❤️.
         </footer>
     </div>
 

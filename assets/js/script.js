@@ -212,73 +212,134 @@ function startAllTyping() {
     });
 }
 
-// Initialize Website Logic
-document.addEventListener('DOMContentLoaded', () => {
+// ── Welcome Stars ───────────────────────────────────────────────
+function initWelcomeStars() {
+    const container = document.getElementById('welcome-stars');
+    if (!container) return;
+    const count = window.innerWidth < 768 ? 60 : 100;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        const size = Math.random() * 2.5 + 0.5;
+        const colorRand = Math.random();
+        s.style.cssText = `
+            position:absolute;
+            border-radius:50%;
+            width:${size}px; height:${size}px;
+            left:${Math.random()*100}%;
+            top:${Math.random()*100}%;
+            opacity:${Math.random()*0.7+0.2};
+            animation: twinkle ${Math.random()*4+2}s ease-in-out infinite;
+            animation-delay:${Math.random()*5}s;
+            background: ${colorRand > 0.6 ? '#FF1493' : colorRand > 0.3 ? '#00D2FF' : '#ffffff'};
+        `;
+        frag.appendChild(s);
+    }
+    container.appendChild(frag);
+}
+
+// ── Handle Welcome Buttons ──────────────────────────────────────
+function handleWelcomeYes() {
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const countdownOverlay = document.getElementById('countdown-overlay');
+
+    // Fade out welcome
+    welcomeOverlay.style.opacity = '0';
+    setTimeout(() => {
+        welcomeOverlay.style.display = 'none';
+        // Show countdown
+        countdownOverlay.style.removeProperty('display');
+        countdownOverlay.style.display = 'flex';
+        startCountdown();
+    }, 700);
+}
+
+function handleWelcomeNo() {
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    welcomeOverlay.style.opacity = '0';
+    setTimeout(() => {
+        // Try close tab, fallback to blank page
+        window.close();
+        setTimeout(() => { window.location.href = 'about:blank'; }, 300);
+    }, 600);
+}
+
+// ── Countdown Logic ─────────────────────────────────────────────
+function startCountdown() {
     const overlay = document.getElementById('countdown-overlay');
     const countText = document.getElementById('countdown-text');
     const starsBg = document.getElementById('stars-bg');
 
-    if (overlay && countText) {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('skip') === '1' || sessionStorage.getItem('skipCountdown') === '1') {
-            overlay.style.display = 'none';
-            document.body.classList.add('start-animations');
-            
-            // Set text directly instead of typewriting to skip the delay
-            const h1 = document.getElementById('typewriter-h1');
-            const h2 = document.getElementById('typewriter-h2');
-            const p = document.getElementById('typewriter-p');
-            const btn = document.getElementById('typewriter-btn');
-            
-            if (h1) h1.innerHTML = "Website Kenangan untuk Arnill 🤍";
-            if (h2) h2.innerHTML = "Tempat menyimpan cerita, foto, dan lagu favorit.";
-            if (p) p.innerHTML = "Semua momen spesial tersimpan di sini. Allooo arnel ini website buat kamu, arnel pernah bilang aku masih inget kalo arnel minta buatin website kan terus aku jawab iyaaa kalo ada waktu longgar ya ini dah aku buatin aku cicil kurang lebih tiga bulanan, semoga arnel sukaa ya, kamu scroll aja kebawah pelan pelan sambil di baca oh iya aku menyarankan buka website nya di laptop ya soal nya agak berat kalo di hp, kalo di laptop bakalan lumayan bagus, terus tombol ini kamu skip dulu scroll aja dulu sampe bawah okeyyy. aku juga milih warna biru meskipun ga se biru itu tapi ini biru sih biru soft aku tauu arnel suka warna biru jadi aku pilih kombinasi warna biru, putih susu, sama warna pink";
-            if (btn) btn.style.opacity = '1';
+    sessionStorage.setItem('skipWelcome', '1');
+    let count = 3;
 
-            if (starsBg) {
-                const runStars = () => initStars(starsBg);
-                if ('requestIdleCallback' in window) {
-                    requestIdleCallback(runStars, { timeout: 1500 });
-                } else {
-                    setTimeout(runStars, 50);
-                }
-            }
+    const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+            countText.textContent = count;
+        } else if (count === 0) {
+            countText.textContent = "❤️";
+            countText.classList.add('scale-[3]', 'transition-transform', 'duration-500');
         } else {
-            sessionStorage.setItem('skipCountdown', '1');
-            let count = 3;
-
-            const timer = setInterval(() => {
-                count--;
-                if (count > 0) {
-                    countText.textContent = count;
-                } else if (count === 0) {
-                    countText.textContent = "❤️";
-                    countText.classList.add('scale-[3]', 'transition-transform', 'duration-500');
-                } else {
-                    clearInterval(timer);
-                    
-                    const rect = countText.getBoundingClientRect();
-                    createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
-                    
-                    countText.style.display = 'none';
-                    overlay.style.opacity = '0';
-                    setTimeout(() => {
-                        overlay.style.display = 'none';
-                        document.body.classList.add('start-animations');
-                        startAllTyping();
-                        if (starsBg) {
-                            const runStars = () => initStars(starsBg);
-                            if ('requestIdleCallback' in window) {
-                                requestIdleCallback(runStars, { timeout: 1500 });
-                            } else {
-                                setTimeout(runStars, 50);
-                            }
-                        }
-                    }, 1000);
+            clearInterval(timer);
+            const rect = countText.getBoundingClientRect();
+            createExplosion(rect.left + rect.width/2, rect.top + rect.height/2);
+            countText.style.display = 'none';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.body.classList.add('start-animations');
+                startAllTyping();
+                if (starsBg) {
+                    const runStars = () => initStars(starsBg);
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(runStars, { timeout: 1500 });
+                    } else {
+                        setTimeout(runStars, 50);
+                    }
                 }
             }, 1000);
         }
+    }, 1000);
+}
+
+// ── Initialize Website Logic ────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    const starsBg = document.getElementById('stars-bg');
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const countdownOverlay = document.getElementById('countdown-overlay');
+
+    // Init welcome stars
+    initWelcomeStars();
+
+    // If came back from another page (session already started), skip welcome
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('skip') === '1' || sessionStorage.getItem('skipWelcome') === '1') {
+        // Hide welcome, hide countdown, go straight to content
+        if (welcomeOverlay) welcomeOverlay.style.display = 'none';
+        if (countdownOverlay) countdownOverlay.style.display = 'none';
+        document.body.classList.add('start-animations');
+
+        const h1 = document.getElementById('typewriter-h1');
+        const h2 = document.getElementById('typewriter-h2');
+        const p  = document.getElementById('typewriter-p');
+        const btn = document.getElementById('typewriter-btn');
+
+        if (h1) h1.innerHTML = "Website Kenangan untuk Arnill 🤍";
+        if (h2) h2.innerHTML = "Tempat menyimpan cerita, foto, dan lagu favorit.";
+        if (p)  p.innerHTML  = "Semua momen spesial tersimpan di sini. Allooo arnel ini website buat kamu, arnel pernah bilang aku masih inget kalo arnel minta buatin website kan terus aku jawab iyaaa kalo ada waktu longgar ya ini dah aku buatin aku cicil kurang lebih tiga bulanan, semoga arnel sukaa ya, kamu scroll aja kebawah pelan pelan sambil di baca oh iya aku menyarankan buka website nya di laptop ya soal nya agak berat kalo di hp, kalo di laptop bakalan lumayan bagus, terus tombol ini kamu skip dulu scroll aja dulu sampe bawah okeyyy. aku juga milih warna biru meskipun ga se biru itu tapi ini biru sih biru soft aku tauu arnel suka warna biru jadi aku pilih kombinasi warna biru, putih susu, sama warna pink";
+        if (btn) btn.style.opacity = '1';
+
+        if (starsBg) {
+            const runStars = () => initStars(starsBg);
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(runStars, { timeout: 1500 });
+            } else {
+                setTimeout(runStars, 50);
+            }
+        }
     }
+    // else: welcome screen is already visible, waiting for user to click a button
 
     setupLazySections();
 });
