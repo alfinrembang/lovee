@@ -53,11 +53,14 @@
         function applySheetStates() {
             sheets.forEach((sheet, i) => {
                 sheet.classList.remove('is-current', 'is-turned');
+                let z = TOTAL_PAGES - i;
                 if (i < currentIndex) {
                     sheet.classList.add('is-turned');
+                    z = i + 1 + TOTAL_PAGES;
                 } else if (i === currentIndex) {
                     sheet.classList.add('is-current');
                 }
+                sheet.style.zIndex = z;
             });
             updateUI();
         }
@@ -65,10 +68,22 @@
         function goToPage(index) {
             if (isAnimating || index < 0 || index >= TOTAL_PAGES || index === currentIndex) return;
             isAnimating = true;
+            
+            const animatingPageIndex = index > currentIndex ? currentIndex : index;
+            if (sheets[animatingPageIndex]) {
+                sheets[animatingPageIndex].style.zIndex = '100'; // Highest priority during animation
+            }
+            
             currentIndex = index;
             applySheetStates();
+            
             setTimeout(() => {
                 isAnimating = false;
+                if (sheets[animatingPageIndex]) {
+                    // Revert to computed z-index
+                    sheets[animatingPageIndex].style.zIndex = animatingPageIndex < currentIndex ? 
+                        (animatingPageIndex + 1 + TOTAL_PAGES) : (TOTAL_PAGES - animatingPageIndex);
+                }
                 updateUI();
             }, 850);
         }
