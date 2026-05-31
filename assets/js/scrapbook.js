@@ -129,14 +129,21 @@
         });
 
         let touchX = 0;
+        let touchY = 0;
         book.addEventListener('touchstart', (e) => {
             touchX = e.changedTouches[0].screenX;
+            touchY = e.changedTouches[0].screenY;
         }, { passive: true });
 
         book.addEventListener('touchend', (e) => {
-            const diff = e.changedTouches[0].screenX - touchX;
-            if (Math.abs(diff) < 50) return;
-            if (diff < 0) nextPage();
+            const diffX = e.changedTouches[0].screenX - touchX;
+            const diffY = e.changedTouches[0].screenY - touchY;
+            
+            // Jika geseran lebih ke arah vertikal (scroll kebawah/keatas), abaikan agar tidak ganti halaman
+            if (Math.abs(diffY) > Math.abs(diffX)) return;
+            
+            if (Math.abs(diffX) < 50) return;
+            if (diffX < 0) nextPage();
             else prevPage();
         }, { passive: true });
 

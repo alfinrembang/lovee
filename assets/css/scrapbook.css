@@ -650,6 +650,7 @@ body.scrapbook-modal-open {
     line-height: 1.7;
     color: #4a3f38;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding-right: 0.25rem;
     padding-bottom: 1.25rem;
     word-break: break-word;
