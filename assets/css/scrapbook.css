@@ -398,7 +398,7 @@ body.secret-unlocked .scrapbook-trigger-section {
 }
 
 .scrapbook-photos--zigzag-a .photo-box:nth-child(2) {
-    bottom: -0.65rem;
+    bottom: -1.75rem;
     right: 0.2rem;
     transform: rotate(4deg);
 }
@@ -412,7 +412,7 @@ body.secret-unlocked .scrapbook-trigger-section {
 }
 
 .scrapbook-photos--zigzag-b .photo-box:nth-child(2) {
-    bottom: -0.65rem;
+    bottom: -1.75rem;
     left: 0.2rem;
     right: auto;
     transform: rotate(-5deg);
@@ -592,7 +592,7 @@ body.scrapbook-modal-open {
 
     .scrapbook-photos--zigzag-a .photo-box:nth-child(2),
     .scrapbook-photos--zigzag-b .photo-box:nth-child(2) {
-        bottom: -0.5rem;
+        bottom: -1.25rem;
     }
 
     .scrapbook-photos .photo-box {
