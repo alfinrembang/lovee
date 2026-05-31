@@ -425,6 +425,14 @@ body.secret-unlocked .scrapbook-trigger-section {
     border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
+.photo-box--full {
+    position: relative;
+    width: 90%;
+    max-width: 240px;
+    margin: 0.5rem auto;
+    transform: rotate(-2deg);
+}
+
 /* Legacy tilt classes (overridden by zigzag rules above) */
 .photo-box--tilt-l,
 .photo-box--tilt-r {
