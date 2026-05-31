@@ -614,3 +614,39 @@ body.scrapbook-modal-open {
         animation: none;
     }
 }
+
+/* Text-only pages — no photo zigzag layout, clean reading layout */
+.scrapbook-page-inner--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 1.5rem 1.25rem 1.25rem;
+    gap: 0.4rem;
+}
+
+.scrapbook-page-inner--text .scrapbook-page-title {
+    text-align: left;
+    border-bottom: 1.5px dashed rgba(236, 72, 153, 0.3);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
+    flex-shrink: 0;
+}
+
+.scrapbook-text-body {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4a3f38;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+    word-break: break-word;
+}
+
+/* Scrollbar styling for text pages */
+.scrapbook-text-body::-webkit-scrollbar { width: 3px; }
+.scrapbook-text-body::-webkit-scrollbar-thumb { background: rgba(236,72,153,0.3); border-radius: 2px; }
+
